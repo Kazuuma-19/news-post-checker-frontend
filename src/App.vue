@@ -1,5 +1,15 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
+import HelloWorld from "./components/HelloWorld.vue";
+import axios from "axios";
+
+const request = axios
+  .get("https://news-post-checker-backend.fly.dev/")
+  .then((res) => {
+    console.log(res.data);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
 </script>
 
 <template>
