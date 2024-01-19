@@ -2,7 +2,7 @@
 import HelloWorld from "./components/HelloWorld.vue";
 import axios from "axios";
 
-const request = axios
+axios
   .get("https://news-post-checker-backend.fly.dev/")
   .then((res) => {
     console.log(res.data);
