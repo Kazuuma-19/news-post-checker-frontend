@@ -20,8 +20,7 @@
     />
     <div class="px-8 py-6">
       <div class="font-bold text-xl mb-2">Explanation</div>
-
-      <p class="text-base mb-4">
+      <p class="text-sm lg:text-base mb-4">
         This app is a tool designed exclusively to lighten the load of the
         deputy seminar leaders by automating the incredibly tedious and
         downright unappealing task of checking if students have posted or
@@ -33,7 +32,7 @@
         you, so you might want to hit the books instead of trying to understand
         this text.
       </p>
-      <p class="text-base mb-4">
+      <p class="text-sm lg:text-base mb-4">
         Alright, for those of you who speak the language of technology, let's
         dive into how this app works. It begins with the user entering the URL
         of a news posting page on cybozu office. This URL is then used as a
@@ -53,7 +52,7 @@
         I'm eyeing a future move to TypeScript, and Prisma plays nicely with
         type definitions.
       </p>
-      <p class="text-base mb-4">
+      <p class="text-sm lg:text-base mb-4">
         I'm planning on making improvements gradually, but I'm really hoping
         that some promising non-technical student will take this app and turn it
         into something even better in the future. Oh, and I almost forgot to
