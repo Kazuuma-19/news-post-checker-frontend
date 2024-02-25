@@ -1,13 +1,27 @@
+<script setup>
+import { ref } from "vue";
+
+const isMenuOpen = ref(false);
+const toggleMenu = () => {
+  isMenuOpen.value = !isMenuOpen.value;
+};
+</script>
+
 <template>
   <header class="mb-12 relative">
-    <h1 class="text-center text-4xl">
+    <h1 class="text-center text-2xl sm:text-3xl lg:text-4xl">
       News Posts
       <span class="text-white bg-main-color-blue py-2 px-3">Checker</span>
     </h1>
 
-    <nav class="absolute top-1/2 right-0 -translate-y-1/2">
-      <ul class="flex gap-8">
-        <li>
+    <nav
+      class="fixed lg:absolute top-0 lg:top-1/2 -right-full lg:right-0 lg:-translate-y-1/2 z-10 w-full lg:w-auto h-full lg:h-auto bg-gray-50 lg:bg-transparent opacity-95 duration-300"
+      :class="{ 'right-0': isMenuOpen }"
+    >
+      <ul
+        class="absolute lg:static top-1/2 left-1/2 -translate-x-1/2 lg:translate-x-0 -translate-y-1/2 lg:translate-y-0 flex flex-col lg:flex-row items-center gap-10 lg:gap-8 text-4xl lg:text-base"
+      >
+        <li class="border-b lg:border-none border-gray-700">
           <a href="#" class="flex items-center gap-1">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -15,7 +29,7 @@
               viewBox="0 0 24 24"
               stroke-width="1.5"
               stroke="currentColor"
-              class="w-6 h-6"
+              class="w-8 lg:w-6 h-8 lg:h-6"
             >
               <path
                 stroke-linecap="round"
@@ -26,7 +40,7 @@
             Home
           </a>
         </li>
-        <li>
+        <li class="border-b lg:border-none border-gray-700">
           <a href="/students" class="flex items-center gap-1">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -34,7 +48,7 @@
               viewBox="0 0 24 24"
               stroke-width="1.5"
               stroke="currentColor"
-              class="w-6 h-6"
+              class="w-8 lg:w-6 h-8 lg:h-6"
             >
               <path
                 stroke-linecap="round"
@@ -47,5 +61,27 @@
         </li>
       </ul>
     </nav>
+
+    <button
+      type="button"
+      class="lg:hidden absolute top-1/2 right-0 -translate-y-1/2 z-10 space-y-2"
+      @click="toggleMenu"
+    >
+      <div
+        class="bg-gray-700 w-8 h-0.5 duration-300"
+        :class="{ '-rotate-45': isMenuOpen, 'translate-y-2.5': isMenuOpen }"
+      ></div>
+      <div
+        class="bg-gray-700 w-8 h-0.5 duration-300"
+        :class="{ 'opacity-0': isMenuOpen }"
+      ></div>
+      <div
+        class="bg-gray-700 w-8 h-0.5 duration-300"
+        :class="{
+          'rotate-45': isMenuOpen,
+          '-translate-y-2.5': isMenuOpen,
+        }"
+      ></div>
+    </button>
   </header>
 </template>
