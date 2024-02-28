@@ -1,11 +1,7 @@
 <script setup>
 import axios from "axios";
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import {
-  FwbButton,
-  FwbModal,
-  FwbInput,
-  FwbSelect,
   FwbA,
   FwbTable,
   FwbTableBody,
@@ -14,37 +10,25 @@ import {
   FwbTableHeadCell,
   FwbTableRow,
 } from "flowbite-vue";
+import CreateModal from "../components/CreateModal.vue";
 
 const students = ref([]);
 const isShowModal = ref(false);
-const selected = ref("");
-const grades = [
-  { value: "FIRST_YEAR", name: "１年" },
-  { value: "SECOND_YEAR", name: "２年" },
-  { value: "THIRD_YEAR", name: "３年" },
-  { value: "FORTH_YEAR", name: "４年" },
-];
 
-const closeModal = () => {
-  isShowModal.value = false;
-};
-const showModal = () => {
-  isShowModal.value = true;
-};
+const showModal = () => (isShowModal.value = true);
+const closeModal = () => (isShowModal.value = false);
 
-axios
-  // .get("https://news-post-checker-backend.fly.dev/student")
-  .get("http://localhost:8080/students")
-  .then((res) => {
+const getStudents = async () => {
+  try {
+    const res = await axios.get("http://localhost:8080/students");
+    // cons res = await axios.get("https://news-post-checker-backend.fly.dev/student")
     students.value = res.data;
-  })
-  .catch((error) => {
+  } catch (error) {
     console.log(error);
-  });
-
-const addStudent = () => {
-  console.log("addStudent");
+  }
 };
+onMounted(getStudents);
+
 const editStudent = (id) => {
   console.log("edit", id);
 };
@@ -147,29 +131,5 @@ const convertGrade = (grade) => {
   </fwb-table>
 
   <!-- modal -->
-  <fwb-modal v-if="isShowModal" @close="closeModal">
-    <template #header>
-      <div class="flex items-center text-lg px-2">新規追加</div>
-    </template>
-
-    <template #body>
-      <fwb-input
-        class="mb-3"
-        v-model="name"
-        label="名前"
-        placeholder="enter your name"
-        required
-      />
-      <fwb-select v-model="selected" :options="grades" label="学年" />
-    </template>
-
-    <template #footer>
-      <div class="flex justify-between">
-        <fwb-button @click="closeModal" color="alternative">
-          Cancel
-        </fwb-button>
-        <fwb-button @click="addStudent" color="green">Add</fwb-button>
-      </div>
-    </template>
-  </fwb-modal>
+  <CreateModal :isShowModal="isShowModal" @emitCloseModal="closeModal" />
 </template>
