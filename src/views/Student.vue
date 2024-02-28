@@ -1,7 +1,19 @@
 <script setup>
 import axios from "axios";
 import { ref } from "vue";
-import { FwbButton, FwbModal, FwbInput, FwbSelect } from "flowbite-vue";
+import {
+  FwbButton,
+  FwbModal,
+  FwbInput,
+  FwbSelect,
+  FwbA,
+  FwbTable,
+  FwbTableBody,
+  FwbTableCell,
+  FwbTableHead,
+  FwbTableHeadCell,
+  FwbTableRow,
+} from "flowbite-vue";
 
 const students = ref([]);
 const isShowModal = ref(false);
@@ -33,11 +45,11 @@ axios
 const addStudent = () => {
   console.log("addStudent");
 };
-const editStudent = () => {
-  console.log("edit");
+const editStudent = (id) => {
+  console.log("edit", id);
 };
-const deleteStudent = () => {
-  console.log("delete");
+const deleteStudent = (id) => {
+  console.log("delete", id);
 };
 
 /**
@@ -81,21 +93,22 @@ const convertGrade = (grade) => {
     </button>
   </div>
 
-  <table class="w-full">
-    <thead class="border-b">
-      <tr>
-        <th class="text-center">学年</th>
-        <th class="text-center">名前</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr class="border-b" v-for="student in students" :key="student.id">
-        <td>{{ convertGrade(student.grade) }}</td>
-        <td class="flex items-center justify-between">
-          <div>{{ student.name }}</div>
+  <fwb-table>
+    <fwb-table-head>
+      <fwb-table-head-cell>学年</fwb-table-head-cell>
+      <fwb-table-head-cell>名前</fwb-table-head-cell>
+      <fwb-table-head-cell>
+        <span class="sr-only">Edit</span>
+      </fwb-table-head-cell>
+    </fwb-table-head>
 
-          <div class="flex gap-3 lg:gap-5">
-            <button @click="editStudent(1)">
+    <fwb-table-body>
+      <fwb-table-row v-for="student in students" :key="student.id">
+        <fwb-table-cell>{{ convertGrade(student.grade) }}</fwb-table-cell>
+        <fwb-table-cell>{{ student.name }}</fwb-table-cell>
+        <fwb-table-cell>
+          <fwb-a href="#" class="flex gap-3 lg:gap-5">
+            <button @click="editStudent(student.id)">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -111,7 +124,7 @@ const convertGrade = (grade) => {
                 />
               </svg>
             </button>
-            <button @click="deleteStudent(1)">
+            <button @click="deleteStudent(student.id)">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -127,11 +140,12 @@ const convertGrade = (grade) => {
                 />
               </svg>
             </button>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+          </fwb-a>
+        </fwb-table-cell>
+      </fwb-table-row>
+    </fwb-table-body>
+  </fwb-table>
+
   <!-- modal -->
   <fwb-modal v-if="isShowModal" @close="closeModal">
     <template #header>
