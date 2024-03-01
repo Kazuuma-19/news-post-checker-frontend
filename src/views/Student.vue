@@ -14,30 +14,43 @@ import CreateModal from "../components/CreateModal.vue";
 import EditModal from "../components/EditModal.vue";
 
 const students = ref([]);
-const student = ref({});
-const isShowModal = ref(false);
-const isEditShowModal = ref(false);
+const selectedStudent = ref({});
+const isCreateModalVisible = ref(false);
+const isEditModalVisible = ref(false);
 
-const showModal = () => (isShowModal.value = true);
-const closeModal = () => (isShowModal.value = false);
+// モーダル表示制御
+const showCreateModal = () => (isCreateModalVisible.value = true);
+const closeCreateModal = () => (isCreateModalVisible.value = false);
+const showEditModal = () => (isEditModalVisible.value = true);
+const closeEditModal = () => (isEditModalVisible.value = false);
 
+/**
+ * 学生一覧を取得する
+ */
 const getStudents = async () => {
   try {
-    const res = await axios.get("http://localhost:8080/students");
+    const response = await axios.get("http://localhost:8080/students");
     // cons res = await axios.get("https://news-post-checker-backend.fly.dev/student")
-    students.value = res.data;
+    students.value = response.data;
   } catch (error) {
-    console.log(error);
+    console.error("Failed to fetch students:", error);
   }
 };
 onMounted(getStudents);
 
-const editStudent = (selectedStudent) => {
-  isEditShowModal.value = true;
-  student.value = selectedStudent;
+/**
+ * 学生を編集する
+ * @param {*} student
+ */
+const editStudent = (student) => {
+  selectedStudent.value = { ...student };
+  showEditModal();
 };
-const closeEditModal = () => (isEditShowModal.value = false);
 
+/**
+ * 学生を削除する
+ * @param {*} id
+ */
 const deleteStudent = (id) => {
   console.log("delete", id);
 };
@@ -65,7 +78,7 @@ const convertGrade = (grade) => {
 <template>
   <div class="flex items-center justify-between mb-8">
     <h2 class="text-2xl font-bold">学生一覧</h2>
-    <button @click="showModal">
+    <button @click="showCreateModal">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
@@ -137,10 +150,13 @@ const convertGrade = (grade) => {
   </fwb-table>
 
   <!-- modal -->
-  <CreateModal :isShowModal="isShowModal" @emitCloseModal="closeModal" />
+  <CreateModal
+    :isVisible="isCreateModalVisible"
+    @closeModal="closeCreateModal"
+  />
   <EditModal
-    :isEditShowModal="isEditShowModal"
-    :editingStudent="student"
-    @emitCloseModal="closeEditModal"
+    :isVisible="isEditModalVisible"
+    :editingStudent="selectedStudent"
+    @closeModal="closeEditModal"
   />
 </template>

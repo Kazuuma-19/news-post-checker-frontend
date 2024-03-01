@@ -2,7 +2,7 @@
 import { FwbButton, FwbModal, FwbInput, FwbSelect } from "flowbite-vue";
 import { ref, defineProps, defineEmits } from "vue";
 
-const props = defineProps(["isShowModal"]);
+const props = defineProps(["isVisible"]);
 const emit = defineEmits(["closeModal"]);
 
 const selected = ref("");
@@ -10,30 +10,31 @@ const grades = [
   { value: "FIRST_YEAR", name: "１年" },
   { value: "SECOND_YEAR", name: "２年" },
   { value: "THIRD_YEAR", name: "３年" },
-  { value: "FORTH_YEAR", name: "４年" },
+  { value: "FOURTH_YEAR", name: "４年" },
 ];
 
 const closeModal = () => {
-  emit("emitCloseModal");
+  emit("closeModal");
 };
 
 const addStudent = () => {
   console.log("addStudent");
+  closeModal();
 };
 </script>
 
 <template>
-  <fwb-modal v-if="props.isShowModal" @close="closeModal">
+  <fwb-modal v-if="props.isVisible" @close="closeModal">
     <template #header>
-      <div class="flex items-center text-lg px-2">新規追加</div>
+      <div class="flex items-center text-lg px-2">Create</div>
     </template>
 
     <template #body>
       <fwb-input
         class="mb-3"
-        v-model="name"
         label="名前"
-        placeholder="enter your name"
+        v-model="name"
+        placeholder="Enter your name"
         required
       />
       <fwb-select v-model="selected" :options="grades" label="学年" />
@@ -41,9 +42,7 @@ const addStudent = () => {
 
     <template #footer>
       <div class="flex justify-between">
-        <fwb-button @click="closeModal" color="alternative">
-          Cancel
-        </fwb-button>
+        <fwb-button @click="closeModal" color="alternative">Cancel</fwb-button>
         <fwb-button @click="addStudent" color="green">Add</fwb-button>
       </div>
     </template>
