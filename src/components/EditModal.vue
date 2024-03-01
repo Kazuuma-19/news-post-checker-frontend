@@ -2,7 +2,7 @@
 import { FwbButton, FwbModal, FwbInput, FwbSelect } from "flowbite-vue";
 import { defineProps, defineEmits, ref, watch } from "vue";
 
-const props = defineProps(["isEditShowModal", "editingStudent"]);
+const props = defineProps(["isVisible", "editingStudent"]);
 const emit = defineEmits(["closeModal"]);
 
 const grades = [
@@ -11,33 +11,38 @@ const grades = [
   { value: "THIRD_YEAR", name: "３年" },
   { value: "FOURTH_YEAR", name: "４年" },
 ];
-
-const student = ref();
-watch(props, () => {
-  student.value = props.editingStudent;
-});
+// propsから受け取った値を監視する
+const student = ref({});
+watch(
+  () => props.editingStudent,
+  (newStudent) => {
+    student.value = { ...newStudent };
+  },
+  { immediate: true },
+);
 
 const closeModal = () => {
-  emit("emitCloseModal");
+  emit("closeModal");
 };
 
 const editStudent = () => {
   console.log("editStudent");
+  closeModal();
 };
 </script>
 
 <template>
-  <fwb-modal v-if="props.isEditShowModal" @close="closeModal">
+  <fwb-modal v-if="props.isVisible" @close="closeModal">
     <template #header>
-      <div class="flex items-center text-lg px-2">編集</div>
+      <div class="flex items-center text-lg px-2">Edit</div>
     </template>
 
     <template #body>
       <fwb-input
         class="mb-3"
-        label="名前"
         v-model="student.name"
-        placeholder="enter your name"
+        label="名前"
+        placeholder="Enter your name"
         required
       />
       <fwb-select v-model="student.grade" :options="grades" label="学年" />
