@@ -11,9 +11,12 @@ import {
   FwbTableRow,
 } from "flowbite-vue";
 import CreateModal from "../components/CreateModal.vue";
+import EditModal from "../components/EditModal.vue";
 
 const students = ref([]);
+const student = ref({});
 const isShowModal = ref(false);
+const isEditShowModal = ref(false);
 
 const showModal = () => (isShowModal.value = true);
 const closeModal = () => (isShowModal.value = false);
@@ -29,9 +32,12 @@ const getStudents = async () => {
 };
 onMounted(getStudents);
 
-const editStudent = (id) => {
-  console.log("edit", id);
+const editStudent = (selectedStudent) => {
+  isEditShowModal.value = true;
+  student.value = selectedStudent;
 };
+const closeEditModal = () => (isEditShowModal.value = false);
+
 const deleteStudent = (id) => {
   console.log("delete", id);
 };
@@ -48,7 +54,7 @@ const convertGrade = (grade) => {
       return "２年";
     case "THIRD_YEAR":
       return "３年";
-    case "FORTH_YEAR":
+    case "FOURTH_YEAR":
       return "４年";
     default:
       return "不明";
@@ -92,7 +98,7 @@ const convertGrade = (grade) => {
         <fwb-table-cell>{{ student.name }}</fwb-table-cell>
         <fwb-table-cell>
           <fwb-a href="#" class="flex gap-3 lg:gap-5">
-            <button @click="editStudent(student.id)">
+            <button @click="editStudent(student)">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -132,4 +138,9 @@ const convertGrade = (grade) => {
 
   <!-- modal -->
   <CreateModal :isShowModal="isShowModal" @emitCloseModal="closeModal" />
+  <EditModal
+    :isEditShowModal="isEditShowModal"
+    :editingStudent="student"
+    @emitCloseModal="closeEditModal"
+  />
 </template>
