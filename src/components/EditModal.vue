@@ -1,9 +1,10 @@
 <script setup>
 import { FwbButton, FwbModal, FwbInput, FwbSelect } from "flowbite-vue";
 import { defineProps, defineEmits, ref, watch } from "vue";
+import axios from "axios";
 
 const props = defineProps(["isVisible", "editingStudent"]);
-const emit = defineEmits(["closeModal"]);
+const emit = defineEmits(["closeModal", "updateStudent"]);
 
 const grades = [
   { value: "FIRST_YEAR", name: "１年" },
@@ -11,7 +12,11 @@ const grades = [
   { value: "THIRD_YEAR", name: "３年" },
   { value: "FOURTH_YEAR", name: "４年" },
 ];
-// propsから受け取った値を監視する
+
+/**
+ * propsで渡ってきた学生情報を監視し、studentにセットする
+ * immediate: trueにすることでページを読み込んだ際にも実行される
+ */
 const student = ref({});
 watch(
   () => props.editingStudent,
@@ -24,10 +29,20 @@ watch(
 const closeModal = () => {
   emit("closeModal");
 };
-
-const editStudent = () => {
-  console.log("editStudent");
-  closeModal();
+/**
+ * 学生を編集する
+ */
+const editStudent = async () => {
+  try {
+    await axios.put(
+      `http://localhost:8080/students/${student.value.id}`,
+      student.value,
+    );
+    emit("updateStudent");
+    closeModal();
+  } catch (error) {
+    console.error("Failed to edit student:", error);
+  }
 };
 </script>
 
