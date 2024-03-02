@@ -39,8 +39,8 @@ const getStudents = async () => {
 onMounted(getStudents);
 
 /**
- * 学生を編集する
- * @param {*} student
+ * 編集する学生の情報をpropsにセットし、モーダルを開く
+ * @param {*} student 選択した学生の情報
  */
 const editStudent = (student) => {
   selectedStudent.value = { ...student };
@@ -49,10 +49,20 @@ const editStudent = (student) => {
 
 /**
  * 学生を削除する
- * @param {*} id
+ * @param {*} 削除する学生のid
  */
-const deleteStudent = (id) => {
-  console.log("delete", id);
+const deleteStudent = async (id) => {
+  const isConfirmed = confirm("本当に削除しますか？");
+  if (!isConfirmed) {
+    return;
+  }
+
+  try {
+    await axios.delete(`http://localhost:8080/students/${id}`);
+    getStudents();
+  } catch (error) {
+    console.error("Failed to delete student:", error);
+  }
 };
 
 /**
@@ -153,10 +163,12 @@ const convertGrade = (grade) => {
   <CreateModal
     :isVisible="isCreateModalVisible"
     @closeModal="closeCreateModal"
+    @updateStudent="getStudents"
   />
   <EditModal
     :isVisible="isEditModalVisible"
     :editingStudent="selectedStudent"
     @closeModal="closeEditModal"
+    @updateStudent="getStudents"
   />
 </template>
