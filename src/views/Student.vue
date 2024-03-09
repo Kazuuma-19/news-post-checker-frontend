@@ -30,7 +30,6 @@ const closeEditModal = () => (isEditModalVisible.value = false);
 const getStudents = async () => {
   try {
     const response = await axios.get("http://localhost:8080/students");
-    // cons res = await axios.get("https://news-post-checker-backend.fly.dev/student")
     students.value = response.data;
   } catch (error) {
     console.error("Failed to fetch students:", error);
