@@ -21,9 +21,12 @@ const toggleMenu = () => {
       :class="{ 'right-0': isMenuOpen }"
     >
       <ul
-        class="absolute lg:static top-1/2 left-1/2 -translate-x-1/2 lg:translate-x-0 -translate-y-1/2 lg:translate-y-0 flex flex-col lg:flex-row items-center gap-10 lg:gap-8 text-4xl lg:text-base"
+        class="max-w-64 md:max-w-96 flex flex-col lg:flex-row items-center mx-auto mt-36 lg:mt-0 gap-8 text-2xl lg:text-base"
       >
-        <li class="border-b lg:border-none border-gray-700">
+        <li
+          class="w-full border-b lg:border-none border-gray-700 py-1.5"
+          @click="toggleMenu"
+        >
           <router-link to="/" class="flex items-center gap-1">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -42,8 +45,13 @@ const toggleMenu = () => {
             Home
           </router-link>
         </li>
-        <li class="border-b lg:border-none border-gray-700">
-          <router-link to="/students" class="flex items-center gap-1">
+
+        <li class="w-full border-b lg:border-none border-gray-700 py-1.5">
+          <router-link
+            to="/students"
+            class="flex items-center gap-1"
+            @click="toggleMenu"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
