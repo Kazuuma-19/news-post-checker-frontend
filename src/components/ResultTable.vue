@@ -9,7 +9,7 @@ import {
 } from "flowbite-vue";
 import { DateTime } from "luxon";
 
-const props = defineProps(["data", "selectedTab"]);
+const props = defineProps(["data"]);
 
 /**
  * enum型の学年を日本語に変換する
@@ -48,17 +48,25 @@ const convertDateTime = (dateTime) => {
     <fwb-table-head>
       <fwb-table-head-cell>Grade</fwb-table-head-cell>
       <fwb-table-head-cell>Name</fwb-table-head-cell>
-      <fwb-table-head-cell>Count</fwb-table-head-cell>
-      <fwb-table-head-cell>Date</fwb-table-head-cell>
+      <fwb-table-head-cell>PostCount</fwb-table-head-cell>
+      <fwb-table-head-cell>PostDate</fwb-table-head-cell>
+      <fwb-table-head-cell>ReplyCount</fwb-table-head-cell>
+      <fwb-table-head-cell>ReplyDate</fwb-table-head-cell>
     </fwb-table-head>
 
     <fwb-table-body>
       <fwb-table-row v-for="post in props.data" :key="post.id">
         <fwb-table-cell>{{ convertGrade(post.grade) }}</fwb-table-cell>
         <fwb-table-cell>{{ post.name }}</fwb-table-cell>
-        <fwb-table-cell>{{ post[selectedTab].count }}</fwb-table-cell>
+        <fwb-table-cell>{{ post.post.count }}</fwb-table-cell>
         <fwb-table-cell>
-          <div v-for="(date, index) in post[selectedTab].dateTime" :key="index">
+          <div v-for="(date, index) in post.post.dateTime" :key="index">
+            {{ convertDateTime(date) }}
+          </div>
+        </fwb-table-cell>
+        <fwb-table-cell>{{ post.reply.count }}</fwb-table-cell>
+        <fwb-table-cell>
+          <div v-for="(date, index) in post.reply.dateTime" :key="index">
             {{ convertDateTime(date) }}
           </div>
         </fwb-table-cell>
