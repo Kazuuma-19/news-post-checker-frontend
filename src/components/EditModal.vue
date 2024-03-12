@@ -1,6 +1,6 @@
 <script setup>
 import { FwbButton, FwbModal, FwbInput, FwbSelect } from "flowbite-vue";
-import { defineProps, defineEmits, ref, watch } from "vue";
+import { ref, watch } from "vue";
 import axios from "axios";
 
 const props = defineProps(["isVisible", "editingStudent"]);
@@ -35,7 +35,7 @@ const closeModal = () => {
 const editStudent = async () => {
   try {
     await axios.put(
-      `http://localhost:8080/students/${student.value.id}`,
+      `https://news-post-checker-backend.fly.dev/students/${student.value.id}`,
       student.value,
     );
     emit("updateStudent");

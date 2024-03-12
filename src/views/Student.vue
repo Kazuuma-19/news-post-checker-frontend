@@ -29,7 +29,9 @@ const closeEditModal = () => (isEditModalVisible.value = false);
  */
 const getStudents = async () => {
   try {
-    const response = await axios.get("http://localhost:8080/students");
+    const response = await axios.get(
+      "https://news-post-checker-backend.fly.dev/students",
+    );
     students.value = response.data;
   } catch (error) {
     console.error("Failed to fetch students:", error);
@@ -57,7 +59,9 @@ const deleteStudent = async (id) => {
   }
 
   try {
-    await axios.delete(`http://localhost:8080/students/${id}`);
+    await axios.delete(
+      `https://news-post-checker-backend.fly.dev/students/${id}`,
+    );
     getStudents();
   } catch (error) {
     console.error("Failed to delete student:", error);
