@@ -12,13 +12,13 @@ const posts = usePostsStore();
  */
 const sortedData = computed(() => {
   return [...posts.response].sort((a, b) => {
-    // まず返信の回数でソート
-    const postCountDiff = a.reply.count - b.reply.count;
+    // まず投稿の回数を昇順でソート
+    const postCountDiff = a.post.count - b.post.count;
     if (postCountDiff !== 0) {
       return postCountDiff;
     }
-    // 返信の回数が同じ場合、投稿の回数でソート
-    return a.post.count - b.post.count;
+    // 投稿の回数が同じ場合、返信の回数を昇順でソート
+    return a.reply.count - b.reply.count;
   });
 });
 </script>
