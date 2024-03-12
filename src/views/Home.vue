@@ -14,7 +14,7 @@ const posts = usePostsStore();
  * @param {*} url スクレイピング対象のURL
  */
 const getScrapeData = async (url) => {
-  return await axios.get("http://localhost:8080/scraping", {
+  return await axios.get("https://news-post-checker-backend.fly.dev/scraping", {
     params: { url },
   });
 };

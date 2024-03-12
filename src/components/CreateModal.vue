@@ -1,6 +1,6 @@
 <script setup>
 import { FwbButton, FwbModal, FwbInput, FwbSelect } from "flowbite-vue";
-import { ref, defineProps, defineEmits } from "vue";
+import { ref } from "vue";
 import axios from "axios";
 
 const props = defineProps(["isVisible"]);
@@ -36,7 +36,7 @@ const addStudent = async () => {
   }
 
   try {
-    await axios.post("http://localhost:8080/students", {
+    await axios.post("https://news-post-checker-backend.fly.dev/students", {
       name: student.value.name,
       grade: student.value.grade,
     });
