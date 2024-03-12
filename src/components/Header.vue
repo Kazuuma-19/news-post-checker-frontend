@@ -9,7 +9,7 @@ const toggleMenu = () => {
 
 <template>
   <header class="mb-12 relative">
-    <h1 class="text-center text-2xl sm:text-3xl lg:text-4xl">
+    <h1 class="text-center text-xl sm:text-3xl lg:text-4xl">
       <router-link to="/">
         News Posts
         <span class="text-white bg-main-color-blue py-2 px-3">Checker</span>
