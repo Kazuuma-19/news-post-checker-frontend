@@ -7,7 +7,7 @@ import ResultTable from "../components/ResultTable.vue";
 const posts = usePostsStore();
 
 /**
- * 投稿の回数と返信の回数でソートしたデータを返す
+ * 返信・投稿の回数、学年でソート
  * @returns {Array} ソート済みのデータ
  */
 const sortedData = computed(() => {
@@ -18,7 +18,19 @@ const sortedData = computed(() => {
       return postCountDiff;
     }
     // 投稿の回数が同じ場合、返信の回数を昇順でソート
-    return a.reply.count - b.reply.count;
+    const replyCountDiff = a.reply.count - b.reply.count;
+    if (replyCountDiff !== 0) {
+      return replyCountDiff;
+    }
+
+    // 投稿・返信の回数が同じ場合、学年でソート
+    const gradeOrder = {
+      FIRST_YEAR: 1,
+      SECOND_YEAR: 2,
+      THIRD_YEAR: 3,
+      FOURTH_YEAR: 4,
+    };
+    return gradeOrder[b.grade] - gradeOrder[a.grade];
   });
 });
 
@@ -27,7 +39,7 @@ const sortedData = computed(() => {
  */
 const copyName = () => {
   // 投稿も返信もしていない場合、名字を返す
-  const names = posts.response
+  const names = sortedData.value
     .filter((post) => {
       return post.post.count === 0 && post.reply.count === 0;
     })

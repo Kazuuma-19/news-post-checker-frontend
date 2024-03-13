@@ -20,7 +20,7 @@ const getScrapeData = async (url) => {
 };
 /**
  * スクレイピングを実行し、結果をセットする
- * その後R
+ * その後Resultページに遷移する
  */
 const startScraping = async () => {
   isScraping.value = true;
