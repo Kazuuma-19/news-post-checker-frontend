@@ -21,12 +21,31 @@ const sortedData = computed(() => {
     return a.reply.count - b.reply.count;
   });
 });
+
+/**
+ * 投稿・返信していない学生の名前をクリップボードにコピーする
+ */
+const copyName = () => {
+  // 投稿も返信もしていない場合、名字を返す
+  const names = posts.response
+    .filter((post) => {
+      return post.post.count === 0 && post.reply.count === 0;
+    })
+    .map((post) => post.name.split(" ")[0])
+    .join("\n");
+
+  navigator.clipboard.writeText(names);
+};
 </script>
 
 <template>
-  <ResultTable :data="sortedData" />
+  <div class="flex items-center justify-end gap-2">
+    <fwb-button @click="copyName" color="dark" outline>Copy</fwb-button>
 
-  <fwb-button class="text-center block" color="default" outline>
-    <router-link to="/">戻る</router-link>
-  </fwb-button>
+    <fwb-button color="default" outline>
+      <router-link to="/">Back</router-link>
+    </fwb-button>
+  </div>
+
+  <ResultTable :data="sortedData" />
 </template>
