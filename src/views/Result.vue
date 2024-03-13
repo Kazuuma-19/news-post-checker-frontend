@@ -40,9 +40,13 @@ const copyName = () => {
 
 <template>
   <div class="flex items-center justify-end gap-2">
-    <fwb-button @click="copyName" color="dark" outline>Copy</fwb-button>
+    <fwb-button @click="copyName" color="dark" outline>Copy Names</fwb-button>
 
-    <fwb-button color="default" outline>
+    <fwb-button
+      color="default"
+      outline
+      class="text-main-color-blue hover:bg-main-color-blue border-main-color-blue"
+    >
       <router-link to="/">Back</router-link>
     </fwb-button>
   </div>
