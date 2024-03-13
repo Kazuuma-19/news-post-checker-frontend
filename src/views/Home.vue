@@ -40,7 +40,7 @@ const startScraping = async () => {
   <div class="rounded overflow-hidden shadow-lg">
     <img
       class="w-full h-72 object-cover"
-      src="../../public/home-news.jpg"
+      src="../../home-news.jpg"
       alt="Sunset in the mountains"
     />
     <div class="px-8 py-6">
