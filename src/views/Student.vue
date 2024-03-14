@@ -111,6 +111,7 @@ const convertGrade = (grade) => {
 
   <fwb-table>
     <fwb-table-head>
+      <fwb-table-head-cell>活動中</fwb-table-head-cell>
       <fwb-table-head-cell>学年</fwb-table-head-cell>
       <fwb-table-head-cell>名前</fwb-table-head-cell>
       <fwb-table-head-cell>
@@ -120,6 +121,15 @@ const convertGrade = (grade) => {
 
     <fwb-table-body>
       <fwb-table-row v-for="student in students" :key="student.id">
+        <fwb-table-cell>
+          <input
+            v-model="student.active"
+            id="checked-checkbox"
+            type="checkbox"
+            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+            disabled
+          />
+        </fwb-table-cell>
         <fwb-table-cell>{{ convertGrade(student.grade) }}</fwb-table-cell>
         <fwb-table-cell>{{ student.name }}</fwb-table-cell>
         <fwb-table-cell>
