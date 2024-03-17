@@ -19,6 +19,8 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
+    // Allow javascript files to be compiled.
+    "allowJs": true,
   },
   "include": [
     "src/**/*.ts",
