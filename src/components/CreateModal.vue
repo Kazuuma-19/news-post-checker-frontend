@@ -3,9 +3,9 @@ import { FwbButton, FwbModal, FwbInput, FwbSelect } from "flowbite-vue";
 import { ref } from "vue";
 import axios from "axios";
 
-const props = defineProps({
-  isVisible: Boolean,
-});
+const props = defineProps<{
+  isVisible: boolean;
+}>();
 const emit = defineEmits(["closeModal", "updateStudent"]);
 
 const student = ref({ name: "", grade: "", active: true });
