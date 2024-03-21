@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import {
   FwbTable,
   FwbTableBody,
@@ -8,6 +8,7 @@ import {
   FwbTableRow,
 } from "flowbite-vue";
 import { DateTime } from "luxon";
+import { Grade } from "../types/types";
 
 const props = defineProps(["data"]);
 
@@ -15,7 +16,7 @@ const props = defineProps(["data"]);
  * enum型の学年を日本語に変換する
  * @param {string} grade
  */
-const convertGrade = (grade) => {
+const convertGrade = (grade: Grade) => {
   switch (grade) {
     case "FIRST_YEAR":
       return "１年";
@@ -34,7 +35,7 @@ const convertGrade = (grade) => {
  * @param {string} dateTime
  * @returns 日本語に変換した日付
  */
-const convertDateTime = (dateTime) => {
+const convertDateTime = (dateTime: string) => {
   return DateTime.fromISO(dateTime, {
     zone: "Asia/Tokyo",
   })

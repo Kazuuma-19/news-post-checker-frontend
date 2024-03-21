@@ -10,6 +10,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@types/luxon": "^3.4.2",
     "axios": "^1.6.5",
     "flowbite": "^2.3.0",
     "flowbite-vue": "^0.1.3",

@@ -1,8 +1,9 @@
-<script setup>
+<script setup lang="ts">
 import { computed } from "vue";
 import { usePostsStore } from "../stores/posts";
 import { FwbButton } from "flowbite-vue";
 import ResultTable from "../components/ResultTable.vue";
+import { NewsPost } from "../types/types";
 
 const posts = usePostsStore();
 
@@ -10,8 +11,8 @@ const posts = usePostsStore();
  * 返信・投稿の回数、学年でソート
  * @returns {Array} ソート済みのデータ
  */
-const sortedData = computed(() => {
-  return [...posts.response].sort((a, b) => {
+const sortedData = computed<NewsPost[]>(() => {
+  return [...posts.response].sort((a: NewsPost, b: NewsPost) => {
     // まず投稿の回数を昇順でソート
     const postCountDiff = a.post.count - b.post.count;
     if (postCountDiff !== 0) {
@@ -39,7 +40,7 @@ const sortedData = computed(() => {
  */
 const copyName = () => {
   // 投稿も返信もしていない場合、名字を返す
-  const names = sortedData.value
+  const names: string = sortedData.value
     .filter((post) => {
       return post.post.count === 0 && post.reply.count === 0;
     })
