@@ -1,9 +1,13 @@
-<script setup>
+<script setup lang="ts">
 import { FwbButton, FwbModal, FwbInput, FwbSelect } from "flowbite-vue";
 import { ref, watch } from "vue";
 import axios from "axios";
+import { NewsPost } from "../types/types";
 
-const props = defineProps(["isVisible", "editingStudent"]);
+const props = defineProps<{
+  isVisible: boolean;
+  editingStudent: NewsPost;
+}>();
 const emit = defineEmits(["closeModal", "updateStudent"]);
 
 const grades = [
@@ -17,10 +21,10 @@ const grades = [
  * propsで渡ってきた学生情報を監視し、studentにセットする
  * immediate: trueにすることでページを読み込んだ際にも実行される
  */
-const student = ref({});
+const student = ref({} as NewsPost);
 watch(
   () => props.editingStudent,
-  (newStudent) => {
+  (newStudent: NewsPost) => {
     student.value = { ...newStudent };
   },
   { immediate: true },

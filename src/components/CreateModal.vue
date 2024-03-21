@@ -1,12 +1,14 @@
-<script setup>
+<script setup lang="ts">
 import { FwbButton, FwbModal, FwbInput, FwbSelect } from "flowbite-vue";
 import { ref } from "vue";
 import axios from "axios";
 
-const props = defineProps(["isVisible"]);
+const props = defineProps({
+  isVisible: Boolean,
+});
 const emit = defineEmits(["closeModal", "updateStudent"]);
 
-const student = ref({ name: "", grade: "" });
+const student = ref({ name: "", grade: "", active: true });
 const grades = [
   { value: "FIRST_YEAR", name: "１年" },
   { value: "SECOND_YEAR", name: "２年" },
@@ -20,7 +22,7 @@ const closeModal = () => {
 /**
  * フォームのバリデーション
  */
-const validateForm = () => {
+const validateForm = (): boolean => {
   if (!student.value.name || !student.value.grade) {
     alert("名前と学年を入力してください。");
     return false;
@@ -39,8 +41,10 @@ const addStudent = async () => {
     await axios.post("https://news-post-checker-backend.fly.dev/students", {
       name: student.value.name,
       grade: student.value.grade,
+      active: student.value.active,
     });
-    student.value = { name: "", grade: "" };
+    // 学生を追加したらフォームを初期化する
+    student.value = { name: "", grade: "", active: true };
     emit("updateStudent");
     closeModal();
   } catch (error) {

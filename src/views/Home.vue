@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import axios from "axios";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
@@ -11,16 +11,16 @@ const posts = usePostsStore();
 
 /**
  * スクレイピング先を定義
- * @param {*} url スクレイピング対象のURL
+ * @param url スクレイピング対象のURL
  */
-const getScrapeData = async (url) => {
+const getScrapeData = async (url: string) => {
   return await axios.get("https://news-post-checker-backend.fly.dev/scraping", {
     params: { url },
   });
 };
 /**
  * スクレイピングを実行し、結果をセットする
- * その後Resultページに遷移する
+ * その後、Resultページに遷移する
  */
 const startScraping = async () => {
   isScraping.value = true;

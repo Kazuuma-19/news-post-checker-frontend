@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import axios from "axios";
 import { ref, onMounted } from "vue";
 import {
@@ -12,9 +12,10 @@ import {
 } from "flowbite-vue";
 import CreateModal from "../components/CreateModal.vue";
 import EditModal from "../components/EditModal.vue";
+import { Grade, NewsPost } from "../types/types";
 
-const students = ref([]);
-const selectedStudent = ref({});
+const students = ref([] as NewsPost[]);
+const selectedStudent = ref({} as NewsPost);
 const isCreateModalVisible = ref(false);
 const isEditModalVisible = ref(false);
 
@@ -43,7 +44,7 @@ onMounted(getStudents);
  * 編集する学生の情報をpropsにセットし、モーダルを開く
  * @param {*} student 選択した学生の情報
  */
-const editStudent = (student) => {
+const editStudent = (student: NewsPost) => {
   selectedStudent.value = { ...student };
   showEditModal();
 };
@@ -52,7 +53,7 @@ const editStudent = (student) => {
  * 学生を削除する
  * @param {*} 削除する学生のid
  */
-const deleteStudent = async (id) => {
+const deleteStudent = async (id: number) => {
   const isConfirmed = confirm("本当に削除しますか？");
   if (!isConfirmed) {
     return;
@@ -72,7 +73,7 @@ const deleteStudent = async (id) => {
  * enum型の学年を日本語に変換する
  * @param {string} grade
  */
-const convertGrade = (grade) => {
+const convertGrade = (grade: Grade) => {
   switch (grade) {
     case "FIRST_YEAR":
       return "１年";
