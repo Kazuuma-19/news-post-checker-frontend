@@ -1,10 +1,15 @@
 <script setup lang="ts">
+import { computed } from "vue";
 import { useFlashMessageStore } from "../stores/flashMessage";
-const message = useFlashMessageStore().message;
+
+const store = useFlashMessageStore();
+const isShowing = computed<boolean>(() => store.isShowing);
+const message = computed<string>(() => store.message);
 </script>
 
 <template>
   <div
+    v-if="isShowing"
     class="flex items-center p-4 mb-4 text-sm text-main-color-blue border border-blue-300 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400 dark:border-blue-800"
     role="alert"
   >

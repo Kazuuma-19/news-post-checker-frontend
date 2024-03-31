@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed } from "vue";
 import { usePostsStore } from "../stores/posts";
 import { FwbButton } from "flowbite-vue";
 import ResultTable from "../components/ResultTable.vue";
@@ -8,7 +8,7 @@ import { NewsPost } from "../types/types";
 import { useFlashMessageStore } from "../stores/flashMessage";
 
 const posts = usePostsStore();
-const isFlash = ref(false);
+const copyFlashMessage = useFlashMessageStore();
 
 /**
  * 返信・投稿の回数、学年でソート
@@ -39,16 +39,6 @@ const sortedData = computed<NewsPost[]>(() => {
 });
 
 /**
- * フラッシュメッセージを表示する
- */
-const showFlash = () => {
-  isFlash.value = true;
-  setTimeout(() => {
-    isFlash.value = false;
-  }, 2000);
-};
-
-/**
  * 投稿・返信していない学生の名前をクリップボードにコピーする
  */
 const copyName = () => {
@@ -62,13 +52,13 @@ const copyName = () => {
 
   navigator.clipboard.writeText(names);
 
-  useFlashMessageStore().setMessage("コピーしました！");
-  showFlash();
+  copyFlashMessage.setMessage(true, "コピーしました！");
+  copyFlashMessage.removeMessage();
 };
 </script>
 
 <template>
-  <FlashMessage v-show="isFlash" />
+  <FlashMessage />
 
   <div class="flex items-center justify-end gap-2">
     <fwb-button @click="copyName" color="dark" outline>Copy Names</fwb-button>
