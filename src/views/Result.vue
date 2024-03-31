@@ -9,7 +9,6 @@ import { useFlashMessageStore } from "../stores/flashMessage";
 
 const posts = usePostsStore();
 const isFlash = ref(false);
-const copyMessage = "コピーしました！";
 
 /**
  * 返信・投稿の回数、学年でソート
@@ -43,7 +42,6 @@ const sortedData = computed<NewsPost[]>(() => {
  * フラッシュメッセージを表示する
  */
 const showFlash = () => {
-  useFlashMessageStore().setMessage(copyMessage);
   isFlash.value = true;
   setTimeout(() => {
     isFlash.value = false;
@@ -63,6 +61,8 @@ const copyName = () => {
     .join("・");
 
   navigator.clipboard.writeText(names);
+
+  useFlashMessageStore().setMessage("コピーしました！");
   showFlash();
 };
 </script>
