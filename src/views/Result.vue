@@ -45,7 +45,7 @@ const copyName = () => {
       return post.post.count === 0 && post.reply.count === 0;
     })
     .map((post) => post.name.split(" ")[0])
-    .join("\n");
+    .join("・");
 
   navigator.clipboard.writeText(names);
 };
