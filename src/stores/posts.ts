@@ -1,12 +1,12 @@
 import { defineStore } from "pinia";
-import { Post } from "../types/types";
+import { NewsPost } from "../types/types";
 
 export const usePostsStore = defineStore("posts", {
   state: () => ({
-    response: [] as Post[],
+    response: [] as NewsPost[],
   }),
   actions: {
-    setResponse(response: Post[]) {
+    setResponse(response: NewsPost[]) {
       this.response = response;
     },
   },
