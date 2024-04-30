@@ -46,45 +46,42 @@ const startScraping = async () => {
     <div class="px-8 py-6">
       <div class="font-bold text-xl mb-2">Explanation</div>
       <p class="text-sm lg:text-base mb-4">
-        This app is a tool designed exclusively to lighten the load of the
-        deputy seminar leaders by automating the incredibly tedious and
-        downright unappealing task of checking if students have posted or
-        replied to news each week. Essentially, it's made for the sole purpose
-        of making the deputy seminar leaders' lives easier. So, if you're a
-        normal student, you're probably never going to open this page
-        again—please, close it quietly and go on with your day. And for those
-        who aren't tech-savvy, well, this might as well be rocket science to
-        you, so you might want to hit the books instead of trying to understand
-        this text.
+        This app is a tool created solely for the purpose of automating the
+        incredibly tedious and unwanted task of checking weekly news posts and
+        replies by students, a duty assigned to the vice seminar leader.
+        Therefore, it is intended only to make life easier for the vice seminar
+        leader. Ordinary students will never need to open this page again, so
+        please quietly close this page. Also, from this point on, the text may
+        not make sense to anyone who is not an engineer, so instead of reading
+        this, you should probably go study.
       </p>
       <p class="text-sm lg:text-base mb-4">
-        Alright, for those of you who speak the language of technology, let's
-        dive into how this app works. It begins with the user entering the URL
-        of a news posting page on cybozu office. This URL is then used as a
-        query parameter in a GET request. On the backend, I'm scraping the data
-        with the puppeteer library in cybozu office. I'm fetching the names of
-        the posters, checking if the post is a reply, and capturing the posting
-        time (in JST), then serving all this data up in a JSON response. The
-        tech stack is pretty cool, if I do say so myself. On the frontend, I'm
-        using Vue.js and Tailwind CSS, with Vite for building, and I've deployed
-        it on Vercel. Why Vercel, you ask? Because it's free, easy to deploy
-        with CI/CD via GitHub, and I don't need to worry about SEO, making a
-        Single Page Application (SPA) a perfect fit. On the backend, I'm rolling
-        with Express, using Prisma as our ORM, PostgreSQL for the database, and
-        I've deployed on Fly.io because, hey, they offer a database for free,
-        and who doesn't love free stuff? Plus, I've hooked it up with GitHub
-        Actions for a sleek CI/CD pipeline. I chose Prisma for the ORM because
-        I'm eyeing a future move to TypeScript, and Prisma plays nicely with
-        type definitions.
+        Now, for those of you who understand technology, let me explain how this
+        app works. This app retrieves information by scraping the news posting
+        page on Cybozu Office. Specifically, it inserts a URL into the query
+        parameters and sends a GET request to the server. On the backend, it
+        uses the puppeteer library to perform scraping on Cybozu Office. It
+        returns the name of each poster, whether the post is a reply, and the
+        posting time (JST) as a response. The tech stack includes Vue.js,
+        TypeScript, and tailwind.css on the frontend, with builds via Vite and
+        deployment on Vercel. On the backend, it uses the Express framework and
+        TypeScript. ORM is handled by Prisma, the database is Postgres, and the
+        deployment is on Fly.io. The choice of technology was driven by the lack
+        of need for SEO, hence the adoption of a SPA. Vercel was chosen for
+        deployment because it allows free and easy deployment integrated with
+        GitHub via CI/CD. The backend uses Express, written in JavaScript, due
+        to development cost considerations. Fly.io was chosen for deployment
+        because it offers a free RDBMS. GitHub Actions are used to achieve
+        CI/CD. ORM uses TypeScript, which ensures type safety, hence the
+        adoption of Prisma.
       </p>
       <p class="text-sm lg:text-base mb-4">
         I'm planning on making improvements gradually, but I'm really hoping
         that some promising non-technical student will take this app and turn it
         into something even better in the future. Oh, and I almost forgot to
-        mention the privacy aspect—names are pretty much leaking left and right
-        here. But don't worry too much; if puppeteer doesn't manage to fetch
-        anything, no names will be outputted. So, you know, fingers crossed and
-        all that.
+        mention privacy concerns; there is no guarantee of security since names
+        are completely exposed. There is a plan to add a login feature in the
+        future, but it might take some time because it's a hassle.
       </p>
     </div>
   </div>
