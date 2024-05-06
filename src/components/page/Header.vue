@@ -8,23 +8,23 @@ const toggleMenu = () => {
 </script>
 
 <template>
-  <header class="mb-12 relative">
+  <header class="relative mb-12">
     <h1 class="text-center text-xl sm:text-3xl lg:text-4xl">
       <router-link to="/">
         News Posts
-        <span class="text-white bg-main-color-blue py-2 px-3">Checker</span>
+        <span class="bg-main-color-blue px-3 py-2 text-white">Checker</span>
       </router-link>
     </h1>
 
     <nav
-      class="fixed lg:absolute top-0 lg:top-1/2 -right-full lg:right-0 lg:-translate-y-1/2 z-10 w-full lg:w-auto h-full lg:h-auto bg-gray-50 lg:bg-transparent opacity-95 duration-300"
+      class="fixed -right-full top-0 z-10 size-full bg-gray-50 opacity-95 duration-300 lg:absolute lg:right-0 lg:top-1/2 lg:size-auto lg:-translate-y-1/2 lg:bg-transparent"
       :class="{ 'right-0': isMenuOpen }"
     >
       <ul
-        class="max-w-64 md:max-w-96 flex flex-col lg:flex-row items-center mx-auto mt-36 lg:mt-0 gap-8 text-2xl lg:text-base"
+        class="mx-auto mt-36 flex max-w-64 flex-col items-center gap-8 text-2xl md:max-w-96 lg:mt-0 lg:flex-row lg:text-base"
       >
         <li
-          class="w-full border-b lg:border-none border-gray-700 py-1.5"
+          class="w-full border-b border-gray-700 py-1.5 lg:border-none"
           @click="toggleMenu"
         >
           <router-link to="/" class="flex items-center gap-1">
@@ -34,7 +34,7 @@ const toggleMenu = () => {
               viewBox="0 0 24 24"
               stroke-width="1.5"
               stroke="currentColor"
-              class="w-8 lg:w-6 h-8 lg:h-6"
+              class="size-8 lg:size-6"
             >
               <path
                 stroke-linecap="round"
@@ -46,7 +46,7 @@ const toggleMenu = () => {
           </router-link>
         </li>
 
-        <li class="w-full border-b lg:border-none border-gray-700 py-1.5">
+        <li class="w-full border-b border-gray-700 py-1.5 lg:border-none">
           <router-link
             to="/students"
             class="flex items-center gap-1"
@@ -58,7 +58,7 @@ const toggleMenu = () => {
               viewBox="0 0 24 24"
               stroke-width="1.5"
               stroke="currentColor"
-              class="w-8 lg:w-6 h-8 lg:h-6"
+              class="size-8 lg:size-6"
             >
               <path
                 stroke-linecap="round"
@@ -74,19 +74,19 @@ const toggleMenu = () => {
 
     <button
       type="button"
-      class="lg:hidden absolute top-1/2 right-0 -translate-y-1/2 z-10 space-y-2"
+      class="absolute right-0 top-1/2 z-10 -translate-y-1/2 space-y-2 lg:hidden"
       @click="toggleMenu"
     >
       <div
-        class="bg-gray-700 w-8 h-0.5 duration-300"
+        class="h-0.5 w-8 bg-gray-700 duration-300"
         :class="{ '-rotate-45': isMenuOpen, 'translate-y-2.5': isMenuOpen }"
       ></div>
       <div
-        class="bg-gray-700 w-8 h-0.5 duration-300"
+        class="h-0.5 w-8 bg-gray-700 duration-300"
         :class="{ 'opacity-0': isMenuOpen }"
       ></div>
       <div
-        class="bg-gray-700 w-8 h-0.5 duration-300"
+        class="h-0.5 w-8 bg-gray-700 duration-300"
         :class="{
           'rotate-45': isMenuOpen,
           '-translate-y-2.5': isMenuOpen,

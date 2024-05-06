@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import { usePostsStore } from "../stores/posts";
+import { usePostsStore } from "../../../stores/posts";
 import { FwbButton } from "flowbite-vue";
-import ResultTable from "../components/ResultTable.vue";
-import FlashMessage from "../components/FlashMessage.vue";
-import { NewsPost } from "../types/types";
-import { useFlashMessageStore } from "../stores/flashMessage";
+import ResultTable from "../../../components/domain/results/ResultTable.vue";
+import FlashMessage from "../../../components/base/FlashMessage.vue";
+import { NewsPost } from "../../../types/types";
+import { useFlashMessageStore } from "../../../stores/flashMessage";
 
 const posts = usePostsStore();
 const copyFlashMessage = useFlashMessageStore();
@@ -66,7 +66,7 @@ const copyName = () => {
     <fwb-button
       color="default"
       outline
-      class="text-main-color-blue hover:bg-main-color-blue border-main-color-blue"
+      class="border-main-color-blue text-main-color-blue hover:bg-main-color-blue"
     >
       <router-link to="/">Back</router-link>
     </fwb-button>

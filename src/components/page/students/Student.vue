@@ -10,9 +10,9 @@ import {
   FwbTableHeadCell,
   FwbTableRow,
 } from "flowbite-vue";
-import CreateModal from "../components/CreateModal.vue";
-import EditModal from "../components/EditModal.vue";
-import { Grade, NewsPost } from "../types/types";
+import CreateModal from "../../../components/domain/students/CreateModal.vue";
+import EditModal from "../../../components/domain/students/EditModal.vue";
+import { Grade, NewsPost } from "../../../types/types";
 
 const students = ref([] as NewsPost[]);
 const selectedStudent = ref({} as NewsPost);
@@ -90,7 +90,7 @@ const convertGrade = (grade: Grade) => {
 </script>
 
 <template>
-  <div class="flex items-center justify-between mb-8">
+  <div class="mb-8 flex items-center justify-between">
     <h2 class="text-2xl font-bold">学生一覧</h2>
     <button @click="showCreateModal">
       <svg
@@ -99,7 +99,7 @@ const convertGrade = (grade: Grade) => {
         viewBox="0 0 24 24"
         stroke-width="1.5"
         stroke="currentColor"
-        class="w-6 h-6"
+        class="size-6"
       >
         <path
           stroke-linecap="round"
@@ -127,7 +127,7 @@ const convertGrade = (grade: Grade) => {
             v-model="student.active"
             id="checked-checkbox"
             type="checkbox"
-            class="w-4 h-4 text-main-color-blue bg-gray-100 border-gray-300 rounded focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600"
+            class="size-4 rounded border-gray-300 bg-gray-100 text-main-color-blue focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
             disabled
           />
         </fwb-table-cell>
@@ -142,7 +142,7 @@ const convertGrade = (grade: Grade) => {
                 viewBox="0 0 24 24"
                 stroke-width="1.5"
                 stroke="currentColor"
-                class="w-6 h-6"
+                class="size-6"
               >
                 <path
                   stroke-linecap="round"
@@ -158,7 +158,7 @@ const convertGrade = (grade: Grade) => {
                 viewBox="0 0 24 24"
                 stroke-width="1.5"
                 stroke="currentColor"
-                class="w-6 h-6"
+                class="size-6"
               >
                 <path
                   stroke-linecap="round"

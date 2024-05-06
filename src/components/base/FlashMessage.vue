@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import { useFlashMessageStore } from "../stores/flashMessage";
+import { useFlashMessageStore } from "../../stores/flashMessage";
 
 const store = useFlashMessageStore();
 const isShowing = computed<boolean>(() => store.isShowing);
@@ -10,11 +10,11 @@ const message = computed<string>(() => store.message);
 <template>
   <div
     v-if="isShowing"
-    class="flex items-center p-4 mb-4 text-sm text-main-color-blue border border-blue-300 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400 dark:border-blue-800"
+    class="mb-4 flex items-center rounded-lg border border-blue-300 bg-blue-50 p-4 text-sm text-main-color-blue dark:border-blue-800 dark:bg-gray-800 dark:text-blue-400"
     role="alert"
   >
     <svg
-      class="flex-shrink-0 inline w-4 h-4 me-3"
+      class="me-3 inline size-4 shrink-0"
       aria-hidden="true"
       xmlns="http://www.w3.org/2000/svg"
       fill="currentColor"
