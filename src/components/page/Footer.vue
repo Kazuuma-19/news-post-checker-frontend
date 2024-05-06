@@ -1,5 +1,5 @@
 <template>
-  <div class="text-center text-sm mt-12">
+  <div class="mt-12 text-center text-sm">
     Designer Masaki Romero, Supporter Kazuma Saito, Sponsor Tanayu
   </div>
 </template>
