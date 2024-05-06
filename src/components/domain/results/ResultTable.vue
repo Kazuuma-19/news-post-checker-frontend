@@ -8,7 +8,7 @@ import {
   FwbTableRow,
 } from "flowbite-vue";
 import { DateTime } from "luxon";
-import { Grade } from "../types/types";
+import { Grade } from "../../../types/types";
 
 const props = defineProps(["data"]);
 

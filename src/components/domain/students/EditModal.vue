@@ -2,7 +2,7 @@
 import { FwbButton, FwbModal, FwbInput, FwbSelect } from "flowbite-vue";
 import { ref, watch } from "vue";
 import axios from "axios";
-import { NewsPost } from "../types/types";
+import { NewsPost } from "../../../types/types";
 
 const props = defineProps<{
   isVisible: boolean;

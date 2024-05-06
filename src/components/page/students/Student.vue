@@ -10,9 +10,9 @@ import {
   FwbTableHeadCell,
   FwbTableRow,
 } from "flowbite-vue";
-import CreateModal from "../components/CreateModal.vue";
-import EditModal from "../components/EditModal.vue";
-import { Grade, NewsPost } from "../types/types";
+import CreateModal from "../../../components/domain/students/CreateModal.vue";
+import EditModal from "../../../components/domain/students/EditModal.vue";
+import { Grade, NewsPost } from "../../../types/types";
 
 const students = ref([] as NewsPost[]);
 const selectedStudent = ref({} as NewsPost);
