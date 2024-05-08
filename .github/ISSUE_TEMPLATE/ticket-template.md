@@ -1,5 +1,5 @@
 ---
-name: チケットテンプレート
+name: ticket template
 about: 新規チケット作成する際のテンプレート
 title: ''
 labels: ''
