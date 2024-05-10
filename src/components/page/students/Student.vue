@@ -6,8 +6,8 @@ import EditModal from "../../../components/domain/students/EditModal.vue";
 import { Student } from "../../../types/types";
 import StudentTable from "../../../components/domain/students/StudentTable.vue";
 import ActionButton from "../../base/ActionButton.vue";
+import { apiURLs } from "../../../utils/constantVariables";
 
-const studentApiUrl = "https://news-post-checker-backend.fly.dev/students";
 const students = ref([] as Student[]);
 const selectedStudent = ref({} as Student);
 const isCreateModalVisible = ref(false);
@@ -24,7 +24,7 @@ const closeEditModal = () => (isEditModalVisible.value = false);
  */
 const getStudents = async () => {
   try {
-    const response = await axios.get(studentApiUrl);
+    const response = await axios.get(apiURLs.STUDENT_URL);
     students.value = response.data;
   } catch (error) {
     console.error("Failed to fetch students:", error);
@@ -50,7 +50,7 @@ const deleteStudent = async (id: number) => {
   if (!isConfirmed) return;
 
   try {
-    await axios.delete(`${studentApiUrl}/${id}`);
+    await axios.delete(`${apiURLs.STUDENT_URL}${id}`);
     getStudents();
   } catch (error) {
     console.error("Failed to delete student:", error);

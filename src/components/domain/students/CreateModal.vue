@@ -4,6 +4,7 @@ import { ref } from "vue";
 import axios from "axios";
 import { getGradeOptions } from "../../../utils/gradeConverter";
 import CheckBox from "../../base/CheckBox.vue";
+import { apiURLs } from "../../../utils/constantVariables";
 
 const props = defineProps<{
   isVisible: boolean;
@@ -36,7 +37,7 @@ const addStudent = async () => {
   }
 
   try {
-    await axios.post("https://news-post-checker-backend.fly.dev/students", {
+    await axios.post(apiURLs.STUDENT_URL, {
       name: student.value.name,
       grade: student.value.grade,
       active: student.value.active,

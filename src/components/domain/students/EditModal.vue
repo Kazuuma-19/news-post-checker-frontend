@@ -5,6 +5,7 @@ import axios from "axios";
 import { Student } from "../../../types/types";
 import { getGradeOptions } from "../../../utils/gradeConverter";
 import CheckBox from "../../base/CheckBox.vue";
+import { apiURLs } from "../../../utils/constantVariables";
 
 const props = defineProps<{
   isVisible: boolean;
@@ -35,10 +36,7 @@ const closeModal = () => {
  */
 const editStudent = async () => {
   try {
-    await axios.put(
-      `https://news-post-checker-backend.fly.dev/students/${student.value.id}`,
-      student.value,
-    );
+    await axios.put(`${apiURLs.STUDENT_URL}${student.value.id}`, student.value);
     emit("updateStudent");
     emit("closeModal");
   } catch (error) {

@@ -6,6 +6,7 @@ import { usePostsStore } from "../../../stores/posts";
 import { NewsPost } from "../../../types/types";
 import HomeCard from "../../../components/domain/home/HomeCard.vue";
 import HomeSearchBox from "../../../components/domain/home/HomeSearchBox.vue";
+import { apiURLs } from "../../../utils/constantVariables";
 
 const router = useRouter();
 const posts = usePostsStore();
@@ -17,12 +18,9 @@ const isScraping = ref<boolean>(false);
  */
 const getScrapeData = async (url: string): Promise<NewsPost[]> => {
   try {
-    const { data } = await axios.get(
-      "https://news-post-checker-backend.fly.dev/scraping",
-      {
-        params: { url },
-      },
-    );
+    const { data } = await axios.get(apiURLs.SCRAPING_URL, {
+      params: { url },
+    });
     return data;
   } catch (error) {
     console.error("Failed to fetch scraping data:", error);
