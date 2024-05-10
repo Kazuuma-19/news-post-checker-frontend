@@ -7,41 +7,10 @@ import {
   FwbTableHeadCell,
   FwbTableRow,
 } from "flowbite-vue";
-import { DateTime } from "luxon";
-import { Grade } from "../../../types/types";
+import { convertGrade } from "../../../utils/gradeConverter";
+import { convertDateTime } from "../../../utils/dateTimeConverter";
 
 const props = defineProps(["data"]);
-
-/**
- * enum型の学年を日本語に変換する
- * @param {string} grade
- */
-const convertGrade = (grade: Grade) => {
-  switch (grade) {
-    case "FIRST_YEAR":
-      return "１年";
-    case "SECOND_YEAR":
-      return "２年";
-    case "THIRD_YEAR":
-      return "３年";
-    case "FOURTH_YEAR":
-      return "４年";
-    default:
-      return "不明";
-  }
-};
-/**
- * 日付を日本語に変換する
- * @param {string} dateTime
- * @returns 日本語に変換した日付
- */
-const convertDateTime = (dateTime: string) => {
-  return DateTime.fromISO(dateTime, {
-    zone: "Asia/Tokyo",
-  })
-    .setLocale("ja")
-    .toFormat("yyyy/M/d(EEE) HH:mm");
-};
 </script>
 
 <template>

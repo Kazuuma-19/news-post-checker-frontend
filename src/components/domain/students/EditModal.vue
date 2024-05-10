@@ -2,29 +2,26 @@
 import { FwbButton, FwbModal, FwbInput, FwbSelect } from "flowbite-vue";
 import { ref, watch } from "vue";
 import axios from "axios";
-import { NewsPost } from "../../../types/types";
+import { Student } from "../../../types/types";
+import { getGradeOptions } from "../../../utils/gradeConverter";
+import CheckBox from "../../base/CheckBox.vue";
 
 const props = defineProps<{
   isVisible: boolean;
-  editingStudent: NewsPost;
+  editingStudent: Student;
 }>();
 const emit = defineEmits(["closeModal", "updateStudent"]);
 
-const grades = [
-  { value: "FIRST_YEAR", name: "１年" },
-  { value: "SECOND_YEAR", name: "２年" },
-  { value: "THIRD_YEAR", name: "３年" },
-  { value: "FOURTH_YEAR", name: "４年" },
-];
+const grades = getGradeOptions();
 
 /**
  * propsで渡ってきた学生情報を監視し、studentにセットする
  * immediate: trueにすることでページを読み込んだ際にも実行される
  */
-const student = ref({} as NewsPost);
+const student = ref({} as Student);
 watch(
   () => props.editingStudent,
-  (newStudent: NewsPost) => {
+  (newStudent: Student) => {
     student.value = { ...newStudent };
   },
   { immediate: true },
@@ -43,7 +40,7 @@ const editStudent = async () => {
       student.value,
     );
     emit("updateStudent");
-    closeModal();
+    emit("closeModal");
   } catch (error) {
     console.error("Failed to edit student:", error);
   }
@@ -70,20 +67,7 @@ const editStudent = async () => {
         label="学年"
         class="mb-6"
       />
-      <div class="flex items-center">
-        <input
-          v-model="student.active"
-          id="edit-checked-checkbox"
-          type="checkbox"
-          class="size-4 rounded border-gray-300 bg-gray-100 text-main-color-blue focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
-        />
-        <label
-          for="edit-checked-checkbox"
-          class="ms-2 text-sm font-medium dark:text-gray-300"
-        >
-          活動中
-        </label>
-      </div>
+      <CheckBox v-model="student.active">活動中</CheckBox>
     </template>
 
     <template #footer>
