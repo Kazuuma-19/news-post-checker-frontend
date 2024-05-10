@@ -16,3 +16,10 @@ export type NewsPost = {
     dateTime?: string[];
   };
 };
+
+export type Student = {
+  id: number;
+  name: string;
+  grade: Grade;
+  active: boolean;
+};
