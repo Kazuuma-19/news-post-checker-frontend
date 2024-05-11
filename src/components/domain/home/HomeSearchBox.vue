@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import LoadingSpinner from "../../../components/base/LoadingSpinner.vue";
-import Input from "../../../components/base/Input.vue";
+import LoadingSpinner from "@components/base/LoadingSpinner.vue";
+import Input from "@components/base/Input.vue";
 
 defineProps<{
   isScraping: boolean;

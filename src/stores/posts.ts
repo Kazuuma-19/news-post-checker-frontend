@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { NewsPost } from "../types/types";
+import { NewsPost } from "@type/types";
 
 export const usePostsStore = defineStore("posts", {
   state: () => ({

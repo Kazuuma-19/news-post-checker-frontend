@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import { useFlashMessageStore } from "../../stores/flashMessage";
+import { useFlashMessageStore } from "@stores/flashMessage";
 
 const store = useFlashMessageStore();
 const isShowing = computed<boolean>(() => store.isShowing);

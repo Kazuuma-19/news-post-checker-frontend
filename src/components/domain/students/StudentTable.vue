@@ -7,9 +7,9 @@ import {
   FwbTableHeadCell,
   FwbTableRow,
 } from "flowbite-vue";
-import ActionButton from "../../base/ActionButton.vue";
-import { Student } from "../../../types/types";
-import { convertGrade } from "../../../utils/gradeConverter";
+import ActionButton from "@components/base/ActionButton.vue";
+import { Student } from "@type/types";
+import { convertGrade } from "@utils/gradeConverter";
 
 const props = defineProps<{
   students: Student[];
