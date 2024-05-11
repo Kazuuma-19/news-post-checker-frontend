@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import { usePostsStore } from "../../../stores/posts";
+import { usePostsStore } from "@stores/posts";
 import { FwbButton } from "flowbite-vue";
-import ResultTable from "../../../components/domain/results/ResultTable.vue";
-import FlashMessage from "../../../components/base/FlashMessage.vue";
-import { NewsPost } from "../../../types/types";
-import { useFlashMessageStore } from "../../../stores/flashMessage";
+import ResultTable from "@components/domain/results/ResultTable.vue";
+import FlashMessage from "@components/base/FlashMessage.vue";
+import { NewsPost } from "@type/types";
+import { useFlashMessageStore } from "@stores/flashMessage";
 
 const posts = usePostsStore();
 const copyFlashMessage = useFlashMessageStore();

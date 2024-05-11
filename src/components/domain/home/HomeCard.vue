@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import Card from "../../../components/base/card/Card.vue";
-import CardSentence from "../../../components/base/card/CardSentence.vue";
+import Card from "@components/base/card/Card.vue";
+import CardSentence from "@components/base/card/CardSentence.vue";
 </script>
 
 <template>

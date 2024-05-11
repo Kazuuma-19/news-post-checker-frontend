@@ -7,8 +7,8 @@ import {
   FwbTableHeadCell,
   FwbTableRow,
 } from "flowbite-vue";
-import { convertGrade } from "../../../utils/gradeConverter";
-import { convertDateTime } from "../../../utils/dateTimeConverter";
+import { convertGrade } from "@utils/gradeConverter";
+import { convertDateTime } from "@utils/dateTimeConverter";
 
 const props = defineProps(["data"]);
 </script>

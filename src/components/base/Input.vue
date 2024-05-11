@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
-import { usePostsStore } from "../../stores/posts";
+import { usePostsStore } from "@stores/posts";
 
 const posts = usePostsStore();
 const inputText = ref<string>("");

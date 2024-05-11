@@ -1,4 +1,4 @@
-import { Grade } from "../types/types";
+import { Grade } from "@type/types";
 
 /**
  * enum型の学年を日本語に変換する

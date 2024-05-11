@@ -2,10 +2,10 @@
 import { FwbButton, FwbModal, FwbInput, FwbSelect } from "flowbite-vue";
 import { ref, watch } from "vue";
 import axios from "axios";
-import { Student } from "../../../types/types";
-import { getGradeOptions } from "../../../utils/gradeConverter";
-import CheckBox from "../../base/CheckBox.vue";
-import { apiURLs } from "../../../utils/constantVariables";
+import { Student } from "@type/types";
+import { getGradeOptions } from "@utils/gradeConverter";
+import CheckBox from "@components/base/CheckBox.vue";
+import { apiURLs } from "@utils/constantVariables";
 
 const props = defineProps<{
   isVisible: boolean;

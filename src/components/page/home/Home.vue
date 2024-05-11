@@ -2,11 +2,11 @@
 import axios from "axios";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
-import { usePostsStore } from "../../../stores/posts";
-import { NewsPost } from "../../../types/types";
-import HomeCard from "../../../components/domain/home/HomeCard.vue";
-import HomeSearchBox from "../../../components/domain/home/HomeSearchBox.vue";
-import { apiURLs } from "../../../utils/constantVariables";
+import { usePostsStore } from "@stores/posts";
+import { NewsPost } from "@type/types";
+import HomeCard from "@components/domain/home/HomeCard.vue";
+import HomeSearchBox from "@components/domain/home/HomeSearchBox.vue";
+import { apiURLs } from "@utils/constantVariables";
 
 const router = useRouter();
 const posts = usePostsStore();

@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import axios from "axios";
 import { ref, onMounted } from "vue";
-import CreateModal from "../../../components/domain/students/CreateModal.vue";
-import EditModal from "../../../components/domain/students/EditModal.vue";
-import { Student } from "../../../types/types";
-import StudentTable from "../../../components/domain/students/StudentTable.vue";
-import ActionButton from "../../base/ActionButton.vue";
-import { apiURLs } from "../../../utils/constantVariables";
+import CreateModal from "@components/domain/students/CreateModal.vue";
+import EditModal from "@components/domain/students/EditModal.vue";
+import { Student } from "@type/types";
+import StudentTable from "@components/domain/students/StudentTable.vue";
+import ActionButton from "@components/base/ActionButton.vue";
+import { apiURLs } from "@utils/constantVariables";
 
 const students = ref([] as Student[]);
 const selectedStudent = ref({} as Student);
