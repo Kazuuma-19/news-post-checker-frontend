@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import LoadingSpinner from "@components/base/LoadingSpinner.vue";
 import Input from "@components/base/Input.vue";
+import { Loader2 } from "lucide-vue-next";
+import { Button } from "@/components/ui/button";
 
 defineProps<{
   isScraping: boolean;
@@ -16,16 +17,13 @@ const startScraping = () => {
   <div class="my-12">
     <Input>Link</Input>
 
-    <button
-      class="block w-full select-none rounded-lg bg-main-color-blue px-6 py-3 text-center align-middle text-xs font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-85 focus:shadow-none active:opacity-85 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+    <Button
+      class="w-full bg-main-color-blue py-3 shadow-md shadow-gray-900/10 transition-all hover:bg-main-color-blue hover:opacity-85 hover:shadow-lg hover:shadow-gray-900/20"
       :disabled="isScraping"
       @click="startScraping"
     >
-      <span class="relative">
-        <LoadingSpinner v-show="isScraping" />
-
-        <span>{{ isScraping ? "Loading..." : "Start" }}</span>
-      </span>
-    </button>
+      <Loader2 v-show="isScraping" class="mr-2 size-6 animate-spin" />
+      <span>{{ isScraping ? "Loading..." : "Start" }}</span>
+    </Button>
   </div>
 </template>
