@@ -13,6 +13,10 @@ http://localhost:5173
 ```sh
 # viteサーバー起動
 npm run dev
+
+# or
+
+bun run dev
 ```
 
 ## Tech Stack
