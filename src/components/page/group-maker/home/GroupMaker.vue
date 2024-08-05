@@ -14,7 +14,6 @@ const studentsStore = useStudentsStore();
 const getStudents = async () => {
   try {
     const response = await axios.get(apiURLs.STUDENT_URL);
-    // students.value = response.data;
     studentsStore.setStudents(response.data);
   } catch (error) {
     console.error("Failed to fetch students:", error);
