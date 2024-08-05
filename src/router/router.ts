@@ -1,7 +1,10 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Home from "@components/page/home/Home.vue";
-import Student from "@components/page/students/Student.vue";
-import Result from "@components/page/results/Result.vue";
+import Home from "@components/page/Home.vue";
+import NewsPostCheckerHome from "@components/page/news-post-checker/home/NewsPostChecker.vue";
+import Student from "@components/page/news-post-checker/students/Student.vue";
+import Result from "@components/page/news-post-checker/results/Result.vue";
+import GroupMakerHome from "@components/page/group-maker/home/GroupMaker.vue";
+import GroupResult from "@components/page/group-maker/results/GroupResult.vue";
 
 const routes = [
   {
@@ -10,14 +13,39 @@ const routes = [
     component: Home,
   },
   {
-    path: "/students",
-    name: "Student",
-    component: Student,
+    path: "/news-post-checker",
+    children: [
+      {
+        path: "",
+        name: "NewsPostCheckerHome",
+        component: NewsPostCheckerHome,
+      },
+      {
+        path: "students",
+        name: "Student",
+        component: Student,
+      },
+      {
+        path: "results",
+        name: "Result",
+        component: Result,
+      },
+    ],
   },
   {
-    path: "/results",
-    name: "Result",
-    component: Result,
+    path: "/group-maker",
+    children: [
+      {
+        path: "",
+        name: "GroupMakerHome",
+        component: GroupMakerHome,
+      },
+      {
+        path: "group",
+        name: "GroupMakeResult",
+        component: GroupResult,
+      },
+    ],
   },
 ];
 

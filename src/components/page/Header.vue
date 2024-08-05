@@ -10,7 +10,7 @@ const toggleMenu = () => {
 <template>
   <header class="relative mb-12">
     <h1 class="text-center text-xl sm:text-3xl lg:text-4xl">
-      <router-link to="/">
+      <router-link :to="{ name: 'NewsPostCheckerHome' }">
         News Posts
         <span class="bg-main-color-blue px-3 py-2 text-white">Checker</span>
       </router-link>
@@ -27,7 +27,7 @@ const toggleMenu = () => {
           class="w-full border-b border-gray-700 py-1.5 lg:border-none"
           @click="toggleMenu"
         >
-          <router-link to="/" class="flex items-center gap-1">
+          <router-link :to="{ name: 'Home' }" class="flex items-center gap-1">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -48,7 +48,7 @@ const toggleMenu = () => {
 
         <li class="w-full border-b border-gray-700 py-1.5 lg:border-none">
           <router-link
-            to="/students"
+            :to="{ name: 'Student' }"
             class="flex items-center gap-1"
             @click="toggleMenu"
           >
