@@ -4,13 +4,14 @@ import { Button } from "@/components/ui/button";
 
 <template>
   <div class="flex flex-col justify-center gap-10">
-    <Button>
-      <router-link :to="{ name: 'NewsPostCheckerHome' }">
-        News Post Checker
-      </router-link>
-    </Button>
-    <Button>
-      <router-link :to="{ name: 'GroupMakerHome' }"> Group Maker </router-link>
-    </Button>
+    <router-link
+      :to="{ name: 'NewsPostCheckerHome' }"
+      class="block text-center"
+    >
+      <Button> News Post Checker </Button>
+    </router-link>
+    <router-link :to="{ name: 'GroupMakerHome' }" class="block text-center">
+      <Button> Group Maker </Button>
+    </router-link>
   </div>
 </template>

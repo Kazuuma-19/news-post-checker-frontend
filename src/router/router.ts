@@ -1,9 +1,10 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "@components/page/Home.vue";
-import NewsPostCheckerHome from "@/components/page/news-post-checker/home/NewsPostChecker.vue";
+import NewsPostCheckerHome from "@components/page/news-post-checker/home/NewsPostChecker.vue";
 import Student from "@components/page/news-post-checker/students/Student.vue";
 import Result from "@components/page/news-post-checker/results/Result.vue";
-import GroupMakerHome from "@/components/page/group-maker/home/GroupMaker.vue";
+import GroupMakerHome from "@components/page/group-maker/home/GroupMaker.vue";
+import GroupResult from "@components/page/group-maker/results/GroupResult.vue";
 
 const routes = [
   {
@@ -38,6 +39,11 @@ const routes = [
         path: "",
         name: "GroupMakerHome",
         component: GroupMakerHome,
+      },
+      {
+        path: "group",
+        name: "GroupMakeResult",
+        component: GroupResult,
       },
     ],
   },
