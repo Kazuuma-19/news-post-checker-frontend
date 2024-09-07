@@ -1,25 +1,25 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-const groupNumber = ref(1);
+const teamNumber = ref(1);
 
 const increment = () => {
-  groupNumber.value++;
+  teamNumber.value++;
 };
 
 const decrement = () => {
-  if (groupNumber.value > 1) {
-    groupNumber.value--;
+  if (teamNumber.value > 1) {
+    teamNumber.value--;
   }
 };
 </script>
 
 <template>
   <div class="mb-14">
-    <p class="mb-6 text-2xl">グループ数を選択してください</p>
+    <p class="mb-6 text-2xl">チーム数を選択してください</p>
 
     <form>
-      <label class="mb-2 text-sm text-gray-900"> グループ数： </label>
+      <label class="mb-2 text-sm text-gray-900"> チーム数： </label>
 
       <div class="relative flex max-w-32 items-center">
         <button
@@ -48,7 +48,7 @@ const decrement = () => {
 
         <input
           type="text"
-          v-model="groupNumber"
+          v-model="teamNumber"
           class="h-11 w-full border-x-0 border-gray-300 bg-gray-50 py-2.5 text-center focus:border-blue-500 focus:ring-blue-500"
         />
 
@@ -77,7 +77,7 @@ const decrement = () => {
         </button>
       </div>
 
-      <div v-for="n in groupNumber" :key="n">
+      <div v-for="n in teamNumber" :key="n">
         {{ n }}
       </div>
     </form>

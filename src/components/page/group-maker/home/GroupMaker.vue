@@ -8,6 +8,7 @@ import { useStudentsStore } from "@/stores/students";
 import axios from "axios";
 import { onMounted } from "vue";
 import { apiURLs } from "@utils/constantVariables";
+import Team from "./Team.vue";
 
 const studentsStore = useStudentsStore();
 
@@ -20,6 +21,10 @@ const getStudents = async () => {
   }
 };
 onMounted(getStudents);
+
+const createGroup = () => {
+  console.log("Group created");
+};
 </script>
 
 <template>
@@ -27,11 +32,13 @@ onMounted(getStudents);
 
   <Presenter />
 
-  <Facilitator />
+  <Team />
 
   <GroupNumber />
 
+  <Facilitator />
+
   <router-link :to="{ name: 'GroupMakeResult' }" class="block text-center">
-    <Button>グループを作成</Button>
+    <Button @click="createGroup">グループを作成</Button>
   </router-link>
 </template>
