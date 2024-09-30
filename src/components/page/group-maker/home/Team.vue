@@ -1,5 +1,10 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+
+defineProps<{
+  checkedStudents: string[];
+}>();
 
 const teamNumber = ref(1);
 
@@ -16,9 +21,9 @@ const decrement = () => {
 
 <template>
   <div class="mb-14">
-    <p class="mb-6 text-2xl">チーム数を選択してください</p>
+    <p class="mb-6 text-2xl">発表者のチーム数を選択してください</p>
 
-    <form>
+    <form class="mb-8">
       <label class="mb-2 text-sm text-gray-900"> チーム数： </label>
 
       <div class="relative flex max-w-32 items-center">
@@ -76,10 +81,42 @@ const decrement = () => {
           </svg>
         </button>
       </div>
-
-      <div v-for="n in teamNumber" :key="n">
-        {{ n }}
-      </div>
     </form>
+
+    <div class="mb-8 flex flex-wrap items-center gap-4">
+      <Card class="w-[18%]" v-for="student in checkedStudents" :key="student">
+        <CardHeader>
+          <CardTitle>{{ student }}</CardTitle>
+        </CardHeader>
+
+        <CardContent>
+          <ul class="grid grid-cols-2 gap-2" id="student">
+            <li v-for="number in teamNumber" :key="number">
+              <input
+                type="radio"
+                :id="`${student}-${number}`"
+                :name="student"
+                class="peer hidden"
+              />
+              <label
+                :for="`${student}-${number}`"
+                class="block cursor-pointer rounded-lg border border-gray-200 p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-600 peer-checked:border-blue-600 peer-checked:text-blue-600"
+              >
+                {{ `Team ${number}` }}
+              </label>
+            </li>
+          </ul>
+        </CardContent>
+      </Card>
+    </div>
+
+    <div class="flex flex-wrap items-center gap-4">
+      <Card class="w-[32%]" v-for="number in teamNumber" :key="number">
+        <CardHeader>
+          <CardTitle>{{ `Team ${number}` }}</CardTitle>
+        </CardHeader>
+        <CardContent> 名前が入ります </CardContent>
+      </Card>
+    </div>
   </div>
 </template>
