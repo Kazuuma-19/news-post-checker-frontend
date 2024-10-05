@@ -7,6 +7,7 @@ defineProps<{
 }>();
 
 const teamNumber = ref(1);
+const teamAssignments = ref<Record<number, string[]>>({});
 
 const increment = () => {
   teamNumber.value++;
@@ -17,11 +18,47 @@ const decrement = () => {
     teamNumber.value--;
   }
 };
+
+/**
+ * Add the student to the team
+ * @param student
+ * @param teamNumber
+ */
+const addStudentToTeam = (student: string, teamNumber: number): void => {
+  if (teamAssignments.value[teamNumber]) {
+    teamAssignments.value[teamNumber].push(student);
+  } else {
+    teamAssignments.value[teamNumber] = [student];
+  }
+};
+
+/**
+ * Remove the student from the team
+ * @param student - The student to be removed from the team
+ */
+const removeStudentFromTeam = (student: string): void => {
+  Object.keys(teamAssignments.value).forEach((team) => {
+    const teamNum: number = parseInt(team);
+    const teamMembers: string[] = teamAssignments.value[teamNum];
+    const studentIndex: number = teamMembers.indexOf(student);
+    if (studentIndex === -1) return;
+    teamMembers.splice(studentIndex, 1);
+  });
+};
+
+const handleChanged = (event: Event, student: string): void => {
+  if (!(event.target instanceof HTMLInputElement)) return;
+  const teamNumber: number = parseInt(event.target.value);
+  const studentName: string = student;
+
+  removeStudentFromTeam(studentName);
+  addStudentToTeam(studentName, teamNumber);
+};
 </script>
 
 <template>
   <div class="mb-14">
-    <p class="mb-6 text-2xl">発表者のチーム数を選択してください</p>
+    <p class="mb-6 text-2xl">発表者のチームを選択してください</p>
 
     <form class="mb-8">
       <label class="mb-2 text-sm text-gray-900"> チーム数： </label>
@@ -92,11 +129,14 @@ const decrement = () => {
         <CardContent>
           <ul class="grid grid-cols-2 gap-2" id="student">
             <li v-for="number in teamNumber" :key="number">
+              <!-- :name = grouping the radio button so that a user can select only 1 element -->
               <input
                 type="radio"
                 :id="`${student}-${number}`"
                 :name="student"
+                :value="number"
                 class="peer hidden"
+                @change="handleChanged($event, student)"
               />
               <label
                 :for="`${student}-${number}`"
@@ -110,12 +150,22 @@ const decrement = () => {
       </Card>
     </div>
 
-    <div class="flex flex-wrap items-center gap-4">
+    <div class="flex flex-wrap gap-4">
       <Card class="w-[32%]" v-for="number in teamNumber" :key="number">
         <CardHeader>
           <CardTitle>{{ `Team ${number}` }}</CardTitle>
         </CardHeader>
-        <CardContent> 名前が入ります </CardContent>
+        <CardContent>
+          <ul class="list-inside list-decimal">
+            <li
+              v-for="student in teamAssignments[number]"
+              :key="student"
+              class="py-1"
+            >
+              {{ student }}
+            </li>
+          </ul>
+        </CardContent>
       </Card>
     </div>
   </div>
