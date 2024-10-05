@@ -91,7 +91,7 @@ const handleChanged = (event: Event, student: string): void => {
         <input
           type="text"
           v-model="teamNumber"
-          class="h-11 w-full border-x-0 border-gray-300 bg-gray-50 py-2.5 text-center focus:border-blue-500 focus:ring-blue-500"
+          class="h-11 w-full border-x-0 border-gray-300 bg-gray-50 py-2.5 text-center focus:border-main-color-blue focus:ring-main-color-blue"
         />
 
         <button
@@ -140,7 +140,7 @@ const handleChanged = (event: Event, student: string): void => {
               />
               <label
                 :for="`${student}-${number}`"
-                class="block cursor-pointer rounded-lg border border-gray-200 p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-600 peer-checked:border-blue-600 peer-checked:text-blue-600"
+                class="block cursor-pointer rounded-lg border border-gray-200 p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-600 peer-checked:border-main-color-blue peer-checked:text-main-color-blue"
               >
                 {{ `Team ${number}` }}
               </label>
