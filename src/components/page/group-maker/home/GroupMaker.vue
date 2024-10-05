@@ -6,10 +6,12 @@ import Presenter from "./Presenter.vue";
 import Absentee from "./Absentee.vue";
 import { useStudentsStore } from "@/stores/students";
 import axios from "axios";
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
 import { apiURLs } from "@utils/constantVariables";
+import Team from "./Team.vue";
 
 const studentsStore = useStudentsStore();
+const checkedStudents = ref<string[]>([]);
 
 const getStudents = async () => {
   try {
@@ -20,18 +22,28 @@ const getStudents = async () => {
   }
 };
 onMounted(getStudents);
+
+const createGroup = () => {
+  console.log("Group created");
+};
+
+const setCheckedStudents = (students: string[]) => {
+  checkedStudents.value = students;
+};
 </script>
 
 <template>
   <Absentee />
 
-  <Presenter />
+  <Presenter @checked="setCheckedStudents" />
 
-  <Facilitator />
+  <Team :checked-students="checkedStudents" />
 
   <GroupNumber />
 
+  <Facilitator />
+
   <router-link :to="{ name: 'GroupMakeResult' }" class="block text-center">
-    <Button>グループを作成</Button>
+    <Button @click="createGroup">グループを作成</Button>
   </router-link>
 </template>

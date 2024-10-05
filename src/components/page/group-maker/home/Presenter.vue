@@ -3,8 +3,27 @@ import { Grade } from "@/types/types";
 import { convertGrade } from "@/utils/gradeConverter";
 import Checkbox from "@/components/ui/checkbox/Checkbox.vue";
 import { useStudentsStore } from "@/stores/students";
+import { ref } from "vue";
+
+const emit = defineEmits<{
+  (e: "checked", students: string[]): void;
+}>();
 
 const studentsStore = useStudentsStore();
+const isStudentChecked = ref<Record<string, boolean>>({});
+const checkedStudents = ref<string[]>([]);
+
+const handleChecked = (checked: boolean, name: string): void => {
+  isStudentChecked.value[name] = checked;
+  getCheckedStudentsName();
+  emit("checked", checkedStudents.value);
+};
+
+const getCheckedStudentsName = (): void => {
+  checkedStudents.value = Object.keys(isStudentChecked.value).filter(
+    (name) => isStudentChecked.value[name],
+  );
+};
 </script>
 
 <template>
@@ -26,7 +45,10 @@ const studentsStore = useStudentsStore();
           :key="student.id"
           class="flex items-center space-x-2"
         >
-          <Checkbox :id="`presenter-${student.id}`" />
+          <Checkbox
+            :id="`presenter-${student.id}`"
+            @update:checked="(checked) => handleChecked(checked, student.name)"
+          />
           <label :for="`presenter-${student.id}`">
             {{ student.name }}
           </label>

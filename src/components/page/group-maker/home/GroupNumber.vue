@@ -76,6 +76,10 @@ const decrement = () => {
           </svg>
         </button>
       </div>
+
+      <div v-for="n in groupNumber" :key="n">
+        {{ n }}
+      </div>
     </form>
   </div>
 </template>
