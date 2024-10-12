@@ -89,7 +89,7 @@ const handleChanged = (event: Event, student: string): void => {
         </button>
 
         <input
-          type="text"
+          type="number"
           v-model="teamNumber"
           class="h-11 w-full border-x-0 border-gray-300 bg-gray-50 py-2.5 text-center focus:border-main-color-blue focus:ring-main-color-blue"
         />

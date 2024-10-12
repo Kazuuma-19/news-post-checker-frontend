@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import Button from "@/components/ui/button/Button.vue";
 import GroupNumber from "./GroupNumber.vue";
-import Facilitator from "./Facilitator.vue";
 import Presenter from "./Presenter.vue";
 import Absentee from "./Absentee.vue";
 import { useStudentsStore } from "@/stores/students";
@@ -40,8 +39,6 @@ const setCheckedStudents = (students: string[]) => {
   <Team :checked-students="checkedStudents" />
 
   <GroupNumber />
-
-  <Facilitator />
 
   <router-link :to="{ name: 'GroupMakeResult' }" class="block text-center">
     <Button @click="createGroup">グループを作成</Button>

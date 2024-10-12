@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 </script>
 
 <template>
-  <div class="flex flex-col justify-center gap-10">
+  <div class="flex justify-center gap-10">
     <router-link
       :to="{ name: 'NewsPostCheckerHome' }"
       class="block text-center"
