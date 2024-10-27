@@ -12,6 +12,15 @@ const decrement = () => {
     groupNumber.value--;
   }
 };
+
+const handleGroupNumberChanged = (event: Event) => {
+  if (!(event.target instanceof HTMLInputElement)) return;
+  if (event.target.valueAsNumber < 1) {
+    event.target.valueAsNumber = 1;
+  } else {
+    groupNumber.value = event.target.valueAsNumber;
+  }
+};
 </script>
 
 <template>
@@ -48,7 +57,8 @@ const decrement = () => {
 
         <input
           type="number"
-          v-model="groupNumber"
+          :value="groupNumber"
+          @change="handleGroupNumberChanged"
           class="h-11 w-full border-x-0 border-gray-300 bg-gray-50 py-2.5 text-center focus:border-blue-500 focus:ring-blue-500"
         />
 

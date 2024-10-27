@@ -20,6 +20,15 @@ const decrement = () => {
   }
 };
 
+const handleTeamNumberChanged = (event: Event) => {
+  if (!(event.target instanceof HTMLInputElement)) return;
+  if (event.target.valueAsNumber < 1) {
+    event.target.valueAsNumber = 1;
+  } else {
+    teamNumber.value = event.target.valueAsNumber;
+  }
+};
+
 /**
  * Add the student to the team
  * @param student
@@ -47,7 +56,7 @@ const removeStudentFromTeam = (student: string): void => {
   });
 };
 
-const handleChanged = (event: Event, student: string): void => {
+const handleTeamChanged = (event: Event, student: string): void => {
   if (!(event.target instanceof HTMLInputElement)) return;
   const teamNumber: number = parseInt(event.target.value);
   const studentName: string = student;
@@ -91,7 +100,8 @@ const handleChanged = (event: Event, student: string): void => {
 
         <input
           type="number"
-          v-model="teamNumber"
+          :value="teamNumber"
+          @change="handleTeamNumberChanged"
           class="h-11 w-full border-x-0 border-gray-300 bg-gray-50 py-2.5 text-center focus:border-main-color-blue focus:ring-main-color-blue"
         />
 
@@ -141,7 +151,7 @@ const handleChanged = (event: Event, student: string): void => {
                 :name="student.name"
                 :value="number"
                 class="peer hidden"
-                @change="handleChanged($event, student.name)"
+                @change="handleTeamChanged($event, student.name)"
               />
               <label
                 :for="`${student.id}-${number}`"
