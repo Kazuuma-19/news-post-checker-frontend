@@ -8,9 +8,10 @@ import axios from "axios";
 import { onMounted, ref } from "vue";
 import { apiURLs } from "@utils/constantVariables";
 import Team from "./Team.vue";
+import { CheckedStudents } from "@/types/types";
 
 const studentsStore = useStudentsStore();
-const checkedStudents = ref<string[]>([]);
+const checkedStudents = ref<CheckedStudents[]>([]);
 
 const getStudents = async () => {
   try {
@@ -26,7 +27,7 @@ const createGroup = () => {
   console.log("Group created");
 };
 
-const setCheckedStudents = (students: string[]) => {
+const setCheckedStudents = (students: CheckedStudents[]) => {
   checkedStudents.value = students;
 };
 </script>

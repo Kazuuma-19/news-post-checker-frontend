@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { CheckedStudents } from "@/types/types";
 
 defineProps<{
-  checkedStudents: string[];
+  checkedStudents: CheckedStudents[];
 }>();
 
 const teamNumber = ref(1);
@@ -121,25 +122,29 @@ const handleChanged = (event: Event, student: string): void => {
     </form>
 
     <div class="mb-8 flex flex-wrap items-center gap-4">
-      <Card class="w-[18%]" v-for="student in checkedStudents" :key="student">
+      <Card
+        class="w-[18%]"
+        v-for="student in checkedStudents"
+        :key="student.id"
+      >
         <CardHeader>
-          <CardTitle>{{ student }}</CardTitle>
+          <CardTitle>{{ student.name }}</CardTitle>
         </CardHeader>
 
         <CardContent>
-          <ul class="grid grid-cols-2 gap-2" id="student">
+          <ul class="grid grid-cols-2 gap-2">
             <li v-for="number in teamNumber" :key="number">
               <!-- :name = grouping the radio button so that a user can select only 1 element -->
               <input
                 type="radio"
-                :id="`${student}-${number}`"
-                :name="student"
+                :id="`${student.id}-${number}`"
+                :name="student.name"
                 :value="number"
                 class="peer hidden"
-                @change="handleChanged($event, student)"
+                @change="handleChanged($event, student.name)"
               />
               <label
-                :for="`${student}-${number}`"
+                :for="`${student.id}-${number}`"
                 class="block cursor-pointer rounded-lg border border-gray-200 p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-600 peer-checked:border-main-color-blue peer-checked:text-main-color-blue"
               >
                 {{ `Team ${number}` }}
