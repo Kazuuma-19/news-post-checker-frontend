@@ -23,3 +23,7 @@ export type Student = {
   grade: Grade;
   active: boolean;
 };
+
+export type CheckedStudents = Omit<Student, "active" | "grade"> & {
+  checked?: boolean;
+};

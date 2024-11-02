@@ -2,7 +2,7 @@
 import { computed } from "vue";
 import { usePostsStore } from "@stores/posts";
 import { FwbButton } from "flowbite-vue";
-import ResultTable from "@components/domain/results/ResultTable.vue";
+import ResultTable from "@/components/domain/news-post-checker/results/ResultTable.vue";
 import FlashMessage from "@components/base/FlashMessage.vue";
 import { NewsPost } from "@type/types";
 import { useFlashMessageStore } from "@stores/flashMessage";

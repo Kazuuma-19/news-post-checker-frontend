@@ -1,17 +1,17 @@
 <script setup lang="ts">
 import Button from "@/components/ui/button/Button.vue";
-import GroupNumber from "./GroupNumber.vue";
-import Facilitator from "./Facilitator.vue";
-import Presenter from "./Presenter.vue";
-import Absentee from "./Absentee.vue";
+import GroupNumber from "../../../domain/group-maker/home/GroupNumber.vue";
+import Presenter from "../../../domain/group-maker/home/Presenter.vue";
+import Absentee from "../../../domain/group-maker/home/Absentee.vue";
 import { useStudentsStore } from "@/stores/students";
 import axios from "axios";
 import { onMounted, ref } from "vue";
 import { apiURLs } from "@utils/constantVariables";
-import Team from "./Team.vue";
+import Team from "../../../domain/group-maker/home/Team.vue";
+import { CheckedStudents } from "@/types/types";
 
 const studentsStore = useStudentsStore();
-const checkedStudents = ref<string[]>([]);
+const checkedStudents = ref<CheckedStudents[]>([]);
 
 const getStudents = async () => {
   try {
@@ -27,7 +27,7 @@ const createGroup = () => {
   console.log("Group created");
 };
 
-const setCheckedStudents = (students: string[]) => {
+const setCheckedStudents = (students: CheckedStudents[]) => {
   checkedStudents.value = students;
 };
 </script>
@@ -40,8 +40,6 @@ const setCheckedStudents = (students: string[]) => {
   <Team :checked-students="checkedStudents" />
 
   <GroupNumber />
-
-  <Facilitator />
 
   <router-link :to="{ name: 'GroupMakeResult' }" class="block text-center">
     <Button @click="createGroup">グループを作成</Button>

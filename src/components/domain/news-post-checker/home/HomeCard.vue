@@ -8,7 +8,7 @@ import CardSentence from "@components/base/card/CardSentence.vue";
     <template #card-img>
       <img
         class="h-72 w-full object-cover"
-        src="../../../../public/home-news.jpg"
+        src="../../../../../public/home-news.jpg"
         alt="News image"
       />
     </template>
