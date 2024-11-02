@@ -3,6 +3,7 @@ import { ref } from "vue";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CheckedStudents } from "@/types/types";
 import { useInputNumber } from "@/composable/useInputNumber";
+import NumberInput from "@/components/base/NumberInput.vue";
 
 defineProps<{
   checkedStudents: CheckedStudents[];
@@ -58,66 +59,14 @@ const handleTeamChanged = (event: Event, student: string): void => {
   <div class="mb-14">
     <p class="mb-6 text-2xl">発表者のチームを選択してください</p>
 
-    <form class="mb-8">
-      <label class="mb-2 text-sm text-gray-900"> チーム数： </label>
-
-      <div class="relative flex max-w-32 items-center">
-        <button
-          type="button"
-          class="h-11 rounded-s-lg border border-gray-300 bg-gray-100 p-3 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100"
-          @click="decrement"
-        >
-          <svg
-            class="text-gray-900"
-            width="12"
-            height="12"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 18 2"
-          >
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M1 1h16"
-            />
-          </svg>
-        </button>
-
-        <input
-          type="number"
-          :value="teamNumber"
-          @change="handleNumberChanged"
-          class="h-11 w-full border-x-0 border-gray-300 bg-gray-50 py-2.5 text-center focus:border-main-color-blue focus:ring-main-color-blue"
-        />
-
-        <button
-          type="button"
-          class="h-11 rounded-e-lg border border-gray-300 bg-gray-100 p-3 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100"
-          @click="increment"
-        >
-          <svg
-            class="text-gray-900"
-            width="12"
-            height="12"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 18 18"
-          >
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M9 1v16M1 9h16"
-            />
-          </svg>
-        </button>
-      </div>
-    </form>
+    <NumberInput
+      :number="teamNumber"
+      :increment="increment"
+      :decrement="decrement"
+      :handle-number-changed="handleNumberChanged"
+    >
+      チーム数
+    </NumberInput>
 
     <div class="mb-8 flex flex-wrap items-center gap-4">
       <Card
