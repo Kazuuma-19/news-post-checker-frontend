@@ -68,7 +68,7 @@ const handleTeamChanged = (event: Event, student: string): void => {
       チーム数
     </NumberInput>
 
-    <div class="mb-8 flex flex-wrap items-center gap-4">
+    <div class="my-8 flex flex-wrap items-center gap-4">
       <Card
         class="w-[18%]"
         v-for="student in checkedStudents"
