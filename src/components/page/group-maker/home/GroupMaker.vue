@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import Button from "@/components/ui/button/Button.vue";
-import GroupNumber from "./GroupNumber.vue";
-import Presenter from "./Presenter.vue";
-import Absentee from "./Absentee.vue";
+import GroupNumber from "../../../domain/group-maker/home/GroupNumber.vue";
+import Presenter from "../../../domain/group-maker/home/Presenter.vue";
+import Absentee from "../../../domain/group-maker/home/Absentee.vue";
 import { useStudentsStore } from "@/stores/students";
 import axios from "axios";
 import { onMounted, ref } from "vue";
 import { apiURLs } from "@utils/constantVariables";
-import Team from "./Team.vue";
+import Team from "../../../domain/group-maker/home/Team.vue";
 import { CheckedStudents } from "@/types/types";
 
 const studentsStore = useStudentsStore();

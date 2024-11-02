@@ -4,8 +4,8 @@ import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { usePostsStore } from "@stores/posts";
 import { NewsPost } from "@type/types";
-import HomeCard from "@components/domain/home/HomeCard.vue";
-import HomeSearchBox from "@components/domain/home/HomeSearchBox.vue";
+import HomeCard from "@/components/domain/news-post-checker/home/HomeCard.vue";
+import HomeSearchBox from "@/components/domain/news-post-checker/home/HomeSearchBox.vue";
 import { apiURLs } from "@utils/constantVariables";
 
 const router = useRouter();
