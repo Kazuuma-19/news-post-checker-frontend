@@ -2,32 +2,20 @@
 import { ref } from "vue";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CheckedStudents } from "@/types/types";
+import { useInputNumber } from "@/composable/useInputNumber";
 
 defineProps<{
   checkedStudents: CheckedStudents[];
 }>();
 
-const teamNumber = ref(1);
 const teamAssignments = ref<Record<number, string[]>>({});
 
-const increment = () => {
-  teamNumber.value++;
-};
-
-const decrement = () => {
-  if (teamNumber.value > 1) {
-    teamNumber.value--;
-  }
-};
-
-const handleTeamNumberChanged = (event: Event) => {
-  if (!(event.target instanceof HTMLInputElement)) return;
-  if (event.target.valueAsNumber < 1) {
-    event.target.valueAsNumber = 1;
-  } else {
-    teamNumber.value = event.target.valueAsNumber;
-  }
-};
+const {
+  number: teamNumber,
+  increment,
+  decrement,
+  handleNumberChanged,
+} = useInputNumber();
 
 /**
  * Add the student to the team
@@ -101,7 +89,7 @@ const handleTeamChanged = (event: Event, student: string): void => {
         <input
           type="number"
           :value="teamNumber"
-          @change="handleTeamNumberChanged"
+          @change="handleNumberChanged"
           class="h-11 w-full border-x-0 border-gray-300 bg-gray-50 py-2.5 text-center focus:border-main-color-blue focus:ring-main-color-blue"
         />
 

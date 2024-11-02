@@ -1,26 +1,12 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { useInputNumber } from "@/composable/useInputNumber";
 
-const groupNumber = ref(1);
-
-const increment = () => {
-  groupNumber.value++;
-};
-
-const decrement = () => {
-  if (groupNumber.value > 1) {
-    groupNumber.value--;
-  }
-};
-
-const handleGroupNumberChanged = (event: Event) => {
-  if (!(event.target instanceof HTMLInputElement)) return;
-  if (event.target.valueAsNumber < 1) {
-    event.target.valueAsNumber = 1;
-  } else {
-    groupNumber.value = event.target.valueAsNumber;
-  }
-};
+const {
+  number: groupNumber,
+  increment,
+  decrement,
+  handleNumberChanged,
+} = useInputNumber();
 </script>
 
 <template>
@@ -58,7 +44,7 @@ const handleGroupNumberChanged = (event: Event) => {
         <input
           type="number"
           :value="groupNumber"
-          @change="handleGroupNumberChanged"
+          @change="handleNumberChanged"
           class="h-11 w-full border-x-0 border-gray-300 bg-gray-50 py-2.5 text-center focus:border-blue-500 focus:ring-blue-500"
         />
 
