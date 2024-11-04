@@ -1,10 +1,29 @@
 <script setup lang="ts">
-import { Grade } from "@/types/types";
+import { CheckedStudents, Grade } from "@/types/types";
 import { convertGrade } from "@/utils/gradeConverter";
 import Checkbox from "@/components/ui/checkbox/Checkbox.vue";
 import { useStudentsStore } from "@/stores/students";
+import { ref } from "vue";
+
+const emit = defineEmits<{
+  (e: "checked", students: CheckedStudents[]): void;
+}>();
 
 const studentsStore = useStudentsStore();
+const checkedStudents = ref<CheckedStudents[]>([]);
+
+const handleChecked = (checked: boolean, student: CheckedStudents): void => {
+  student.checked = checked;
+  if (checked) {
+    checkedStudents.value.push(student);
+  } else {
+    // return the students except the selected student
+    checkedStudents.value = checkedStudents.value.filter(
+      (s) => s.id !== student.id,
+    );
+  }
+  emit("checked", checkedStudents.value);
+};
 </script>
 
 <template>
@@ -26,7 +45,16 @@ const studentsStore = useStudentsStore();
           :key="student.id"
           class="flex items-center space-x-2"
         >
-          <Checkbox :id="`absentee-${student.id}`" />
+          <Checkbox
+            :id="`absentee-${student.id}`"
+            @update:checked="
+              (checked) =>
+                handleChecked(checked, {
+                  id: student.id,
+                  name: student.name,
+                })
+            "
+          />
           <label :for="`absentee-${student.id}`">
             {{ student.name }}
           </label>

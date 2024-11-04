@@ -12,6 +12,7 @@ import { CheckedStudents } from "@/types/types";
 
 const studentsStore = useStudentsStore();
 const checkedStudents = ref<CheckedStudents[]>([]);
+const absentees = ref<CheckedStudents[]>([]);
 
 const getStudents = async () => {
   try {
@@ -30,10 +31,14 @@ const createGroup = () => {
 const setCheckedStudents = (students: CheckedStudents[]) => {
   checkedStudents.value = students;
 };
+
+const setAbsentees = (students: CheckedStudents[]) => {
+  absentees.value = students;
+};
 </script>
 
 <template>
-  <Absentee />
+  <Absentee @checked="setAbsentees" />
 
   <Presenter @checked="setCheckedStudents" />
 
