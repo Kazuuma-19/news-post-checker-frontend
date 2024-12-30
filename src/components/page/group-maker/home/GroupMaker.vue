@@ -40,7 +40,7 @@ const setAbsentees = (students: CheckedStudents[]) => {
 <template>
   <Absentee @checked="setAbsentees" />
 
-  <Presenter @checked="setCheckedStudents" />
+  <Presenter :absentees="absentees" @checked="setCheckedStudents" />
 
   <Team :checked-students="checkedStudents" />
 
