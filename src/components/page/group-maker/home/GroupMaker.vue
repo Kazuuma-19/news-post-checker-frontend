@@ -11,7 +11,7 @@ import Team from "../../../domain/group-maker/home/Team.vue";
 import { CheckedStudents } from "@/types/types";
 
 const studentsStore = useStudentsStore();
-const checkedStudents = ref<CheckedStudents[]>([]);
+const presenter = ref<CheckedStudents[]>([]);
 const absentees = ref<CheckedStudents[]>([]);
 
 const getStudents = async () => {
@@ -28,8 +28,8 @@ const createGroup = () => {
   console.log("Group created");
 };
 
-const setCheckedStudents = (students: CheckedStudents[]) => {
-  checkedStudents.value = students;
+const setPresenter = (students: CheckedStudents[]) => {
+  presenter.value = students;
 };
 
 const setAbsentees = (students: CheckedStudents[]) => {
@@ -40,9 +40,9 @@ const setAbsentees = (students: CheckedStudents[]) => {
 <template>
   <Absentee @checked="setAbsentees" />
 
-  <Presenter :absentees="absentees" @checked="setCheckedStudents" />
+  <Presenter :absentees="absentees" @checked="setPresenter" />
 
-  <Team :checked-students="checkedStudents" />
+  <Team :presenter="presenter" />
 
   <GroupNumber />
 

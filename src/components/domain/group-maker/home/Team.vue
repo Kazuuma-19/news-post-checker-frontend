@@ -6,7 +6,7 @@ import { useInputNumber } from "@/composable/useInputNumber";
 import NumberInput from "@/components/base/NumberInput.vue";
 
 defineProps<{
-  checkedStudents: CheckedStudents[];
+  presenter: CheckedStudents[];
 }>();
 
 const teamAssignments = ref<Record<number, string[]>>({});
@@ -45,6 +45,11 @@ const removeStudentFromTeam = (student: string): void => {
   });
 };
 
+/**
+ * 発表者のチームを変更
+ * @param event
+ * @param student
+ */
 const handleTeamChanged = (event: Event, student: string): void => {
   if (!(event.target instanceof HTMLInputElement)) return;
   const teamNumber: number = parseInt(event.target.value);
@@ -69,11 +74,7 @@ const handleTeamChanged = (event: Event, student: string): void => {
     </NumberInput>
 
     <div class="my-8 flex flex-wrap items-center gap-4">
-      <Card
-        class="w-[18%]"
-        v-for="student in checkedStudents"
-        :key="student.id"
-      >
+      <Card class="w-[18%]" v-for="student in presenter" :key="student.id">
         <CardHeader>
           <CardTitle>{{ student.name }}</CardTitle>
         </CardHeader>
@@ -94,7 +95,7 @@ const handleTeamChanged = (event: Event, student: string): void => {
                 :for="`${student.id}-${number}`"
                 class="block cursor-pointer rounded-lg border border-gray-200 p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-600 peer-checked:border-main-color-blue peer-checked:text-main-color-blue"
               >
-                {{ `Team ${number}` }}
+                {{ `チーム ${number}` }}
               </label>
             </li>
           </ul>
@@ -105,7 +106,7 @@ const handleTeamChanged = (event: Event, student: string): void => {
     <div class="flex flex-wrap gap-4">
       <Card class="w-[32%]" v-for="number in teamNumber" :key="number">
         <CardHeader>
-          <CardTitle>{{ `Team ${number}` }}</CardTitle>
+          <CardTitle>{{ `チーム ${number}` }}</CardTitle>
         </CardHeader>
         <CardContent>
           <ul class="list-inside list-decimal">
