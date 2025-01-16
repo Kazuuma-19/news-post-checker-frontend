@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Button from "@/components/ui/button/Button.vue";
-import GroupNumber from "../../../domain/group-maker/home/GroupNumber.vue";
+import NumberOfGroup from "../../../domain/group-maker/home/NumberOfGroup.vue";
 import Presenter from "../../../domain/group-maker/home/Presenter.vue";
 import Absentee from "../../../domain/group-maker/home/Absentee.vue";
 import { useStudentsStore } from "@/stores/students";
@@ -13,6 +13,7 @@ import { CheckedStudents } from "@/types/types";
 const studentsStore = useStudentsStore();
 const presenter = ref<CheckedStudents[]>([]);
 const absentees = ref<CheckedStudents[]>([]);
+const numberOfGroup = ref<number>(1);
 
 const getStudents = async () => {
   try {
@@ -24,16 +25,25 @@ const getStudents = async () => {
 };
 onMounted(getStudents);
 
-const createGroup = () => {
-  console.log("Group created");
-};
-
 const setPresenter = (students: CheckedStudents[]) => {
   presenter.value = students;
 };
 
 const setAbsentees = (students: CheckedStudents[]) => {
   absentees.value = students;
+};
+
+const setNumberOfGroup = (number: number) => {
+  numberOfGroup.value = number;
+};
+
+/**
+ * グループの情報を送信
+ */
+const createGroup = () => {
+  console.log("absentees", absentees.value);
+  console.log("presenter", presenter.value);
+  console.log("numberOfGroup", numberOfGroup.value);
 };
 </script>
 
@@ -44,9 +54,9 @@ const setAbsentees = (students: CheckedStudents[]) => {
 
   <Team :presenter="presenter" />
 
-  <GroupNumber />
+  <NumberOfGroup @update="setNumberOfGroup" />
 
-  <router-link :to="{ name: 'GroupMakeResult' }" class="block text-center">
-    <Button @click="createGroup">グループを作成</Button>
-  </router-link>
+  <!-- <router-link :to="{ name: 'GroupMakeResult' }" class="block text-center"> -->
+  <Button @click="createGroup">グループを作成</Button>
+  <!-- </router-link> -->
 </template>
