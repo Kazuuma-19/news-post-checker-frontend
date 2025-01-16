@@ -9,16 +9,7 @@ export const useStudentsStore = defineStore("students", {
   },
   getters: {
     groupStudentsByGrade(): Record<string, Student[]> {
-      return this.students.reduce<Record<string, Student[]>>(
-        (groups, student) => {
-          if (!groups[student.grade]) {
-            groups[student.grade] = [];
-          }
-          groups[student.grade].push(student);
-          return groups;
-        },
-        {},
-      );
+      return Object.groupBy(this.students, (student) => student.grade);
     },
   },
   actions: {

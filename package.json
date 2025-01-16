@@ -13,6 +13,7 @@
     "@types/luxon": "^3.4.2",
     "@types/node": "^20.12.11",
     "axios": "^1.6.5",
+    "caniuse-lite": "^1.0.30001690",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "flowbite": "^2.3.0",

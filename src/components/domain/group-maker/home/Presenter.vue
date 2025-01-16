@@ -3,7 +3,11 @@ import { Grade, CheckedStudents } from "@/types/types";
 import { convertGrade } from "@/utils/gradeConverter";
 import Checkbox from "@/components/ui/checkbox/Checkbox.vue";
 import { useStudentsStore } from "@/stores/students";
-import { ref } from "vue";
+import { computed, ref } from "vue";
+
+const props = defineProps<{
+  absentees: CheckedStudents[];
+}>();
 
 const emit = defineEmits<{
   (e: "checked", students: CheckedStudents[]): void;
@@ -11,6 +15,20 @@ const emit = defineEmits<{
 
 const studentsStore = useStudentsStore();
 const checkedStudents = ref<CheckedStudents[]>([]);
+
+/**
+ * 欠席者を除いた生徒を取得
+ */
+const studentsExcludingAbsentees = computed(() => {
+  const allStudents = studentsStore.students;
+  const absenteeIds = new Set(props.absentees.map((absentee) => absentee.id));
+  // 欠席者のIDと一致しない生徒を返す
+  const students = allStudents.filter(
+    (student) => !absenteeIds.has(student.id),
+  );
+  // 生徒を学年ごとにグループ化
+  return Object.groupBy(students, (student) => student.grade);
+});
 
 const handleChecked = (checked: boolean, student: CheckedStudents): void => {
   student.checked = checked;
@@ -30,7 +48,7 @@ const handleChecked = (checked: boolean, student: CheckedStudents): void => {
     <p class="mb-6 text-2xl">発表者を選択してください</p>
 
     <div
-      v-for="(students, grade) in studentsStore.groupStudentsByGrade"
+      v-for="(students, grade) in studentsExcludingAbsentees"
       :key="grade"
       class="mb-8"
     >

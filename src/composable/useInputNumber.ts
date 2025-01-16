@@ -13,6 +13,11 @@ export function useInputNumber() {
     }
   };
 
+  /**
+   * チーム数の変更
+   * @param event
+   * @returns
+   */
   const handleNumberChanged = (event: Event) => {
     if (!(event.target instanceof HTMLInputElement)) return;
     if (event.target.valueAsNumber < 1) {

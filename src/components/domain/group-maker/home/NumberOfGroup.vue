@@ -1,13 +1,26 @@
 <script setup lang="ts">
 import NumberInput from "@/components/base/NumberInput.vue";
 import { useInputNumber } from "@/composable/useInputNumber";
+import { watch } from "vue";
+
+const emit = defineEmits<{
+  (e: "update", number: number): void;
+}>();
 
 const {
-  number: groupNumber,
+  number: numberOfGroup,
   increment,
   decrement,
   handleNumberChanged,
 } = useInputNumber();
+
+watch(
+  numberOfGroup,
+  () => {
+    emit("update", numberOfGroup.value);
+  },
+  { immediate: true },
+);
 </script>
 
 <template>
@@ -15,7 +28,7 @@ const {
     <p class="mb-6 text-2xl">班数を選択してください</p>
 
     <NumberInput
-      :number="groupNumber"
+      :number="numberOfGroup"
       :increment="increment"
       :decrement="decrement"
       :handle-number-changed="handleNumberChanged"
